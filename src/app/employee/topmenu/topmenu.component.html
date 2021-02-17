@@ -1,0 +1,6 @@
+<div class="hide-large collapse navbar-collapse py-2" id="navbarSupportedContent">  
+  <a *ngFor="let menuitem of menuitems" class="topmenuitem m-0 p-2" routerLink="{{menuitem.url}}" routerLinkActive="topmenuitem-active" [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon>{{menuitem.icon}}</mat-icon><span class="menutext">{{menuitem.text}}</span>
+  </a>
+  <app-profile class="my-2 w-100"></app-profile>
+</div>

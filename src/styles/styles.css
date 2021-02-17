@@ -1,0 +1,259 @@
+/* You can add global styles to this file, and also import other style files */
+@import './colors.css';
+@import './materialelements.css';
+@import './variables.css';
+@import './mediaquery.css';
+
+body {
+  width: 100%;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.login-bg {
+  background-image: url('../assets/images/login-bg.jpg');
+}
+
+.bg-regular {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.anex-small {
+  margin: 4em;
+  width: 150px;
+  height: 99px;
+}
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.logo-header {
+  height: var(--logo-height);
+}
+
+.menu {
+  background-color: var(--color-secondary);
+  height: calc(100vh - var(--appheader-height));
+  margin-top: var(--appheader-height);
+  position: sticky;
+}
+
+.largesidemenu {
+  width: var(--largesidemenu-width);
+}
+
+  .largesidemenu > a > span {
+    display: inline;
+  }
+
+.smallsidemenu {
+  width: var(--smallsidemenu-width);
+  transition: width 0.5s;
+}
+
+  .smallsidemenu > a > span {
+    display: none;
+  }
+
+.page-content {
+  display: inline;
+  overflow-x: hidden;
+}
+
+.page-header {
+  color: var(--color-primary);
+}
+
+.sidemenuitem {
+  display: block;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--color-white);
+  background-color: var(--color-secondary);
+  border-radius: 0px;
+  width: inherit;
+  text-overflow: ellipsis;
+}
+
+.sidemenuitem {
+  -webkit-transition: margin 0.5s, color 1s, background-color 1s;
+  -moz-transition: margin 0.5s, color 1s, background-color 1s;
+  -o-transition: margin 0.5s, color 1s, background-color 1s;
+  transition: margin 0.5s, color 1s, background-color 1s;
+}
+
+  .sidemenuitem:hover {
+    color: var(--color-light);
+    background-color: var(--color-gray);
+  }
+
+.sidemenuitem-active {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  /* border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; */
+  /* margin-left: 5px !important; */
+}
+
+  .sidemenuitem-active:hover {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+  }
+
+.sidemenu-selection {
+  color: var(--color-white);
+  background-color: var(--color-white);
+  width: 240px;
+  height: 40px;
+  text-overflow: ellipsis;
+  margin-left: 5px !important;
+}
+
+.sidemnu-selection-margin {
+  margin-top: 20px !important;
+}
+
+.topmenuitem {
+  display: block;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--color-black);
+  background-color: var(--color-white);
+  transition: background-color 0.5s;
+  border-radius: 0px;
+  width: inherit;
+}
+
+  .topmenuitem:hover {
+    color: var(--color-white);
+    background-color: var(--color-gray);
+  }
+
+.topmenuitem-active {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: 5px;
+}
+
+  .topmenuitem-active:hover {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+  }
+
+.menucollapse {
+  position: absolute;
+  bottom: 0px;
+  background-color: var(--color-gray);
+}
+
+.app-header {
+  border-right: solid 5px var(--color-primary);
+}
+
+.profile {
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+}
+
+.left-button {
+  text-align: left !important;
+}
+
+.btn-theme {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  vertical-align: bottom;
+}
+
+.valigntext {
+  vertical-align: middle;
+  text-align: left;
+}
+
+.valigntextManagerRatings {
+  vertical-align: middle;
+  text-align: left;
+  width: 180px !important;
+}
+
+.scrollable-table {
+  overflow-x: scroll;
+  min-height: 100px;
+}
+
+.descriptive-info {
+  min-width: 270px !important;
+}
+
+.other-info {
+  min-width: 150px !important;
+}
+
+.row-options {
+  min-width: 75px !important;
+}
+
+.table-first-row-border {
+  border-bottom: solid 1px var(--color-light);
+  border-left: solid 1px var(--color-light);
+  border-right: solid 1px var(--color-light);
+}
+
+.table-row-border {
+  border-bottom: solid 1px var(--color-light);
+  border-right: solid 1px var(--color-light);
+}
+
+.table-first-header-border {
+  border-top: solid 1px var(--color-light);
+  border-bottom: solid 1px var(--color-light);
+  border-left: solid 1px var(--color-light);
+  border-right: solid 1px var(--color-light);
+}
+
+.table-header-border {
+  border-top: solid 1px var(--color-light);
+  border-bottom: solid 1px var(--color-light);
+  border-right: solid 1px var(--color-light);
+}
+
+.btn-alt-theme {
+  color: var(--color-primary);
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.scoreboard-bar-chart1{
+  width: 80%;
+  height: 80%;
+}
+
+.scoreboard-bar-chart2{
+  background-color: rgb(69, 69, 70);
+}
+
+.scoreboard-bar-chart3{
+  background-color: black;
+  color: white;
+}

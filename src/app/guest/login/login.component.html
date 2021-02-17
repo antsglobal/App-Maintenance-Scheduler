@@ -1,0 +1,29 @@
+<div class="row login-bg bg-regular h-100 m-0 p-0">
+  <div class="show-medium col-sm-8 h-100">
+    <!-- <img src="../../../assets/images/anex-logo.png" class="anex-small"> -->
+  </div>
+  <div class="row m-0 p-2 col-xsm-12 col-sm-4 h-100 bg-white align-content-center">
+    <div class="card border-0">
+      <div class="text-center">
+        <img src="../../assets/images/anex-logo-dark.png" width="50%" />
+      </div>
+      <div class="card-body">
+        <form>
+          <mat-form-field appearance="outline" class="w-100 m-1" color="accent">
+            <mat-label>Email Id</mat-label>
+            <input matInput [formControl]="email" [(ngModel)]="inputUserName" required>
+            <mat-error color="warn" *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100 m-1" color="accent">
+            <mat-label>Password</mat-label>
+            <input matInput [formControl]="password" type="password" [(ngModel)]="inputPassword" required>
+            <mat-error color="warn" *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-checkbox color="primary" class="w-100 m-1">Remember Me!</mat-checkbox>
+          <button mat-raised-button color="primary" class="btn btn-block w-100 m-2" type="button" (click)="login();">Login</button>
+          <button mat-button class="btn btn-link btn-block w-100 m-2" type="submit" (click)="forgotpassword();">Forgot Password</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

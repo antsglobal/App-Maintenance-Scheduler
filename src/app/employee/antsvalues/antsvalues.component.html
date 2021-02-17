@@ -1,0 +1,288 @@
+<p class="page-header h3 m-3">ANTS Values</p>
+<mat-divider></mat-divider>
+
+<div class="table-responsive">
+  <h2>CONTRIBUTION</h2>
+  <table class="table table-bordered" width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>ANTS Values</th>
+        <th>Did ANTS live this value?</th>
+        <th>Recommendations for improvement</th>
+        <th>Did I live this value?</th>
+        <th>How did I live this value?</th>
+      </tr>
+    </thead>
+    <tbody>   
+        <tr class="tr-height">
+          <td class="valigntext">1</td>
+          <td class="valigntext">Quality</td>
+          <td class="valigntext">
+            <mat-select [disabled]=!selfassessmentenabled [(ngModel)]="q1">
+              <mat-option>None</mat-option>
+              <mat-option [value]="4">Mostly</mat-option>
+              <mat-option [value]="3">Sometimes</mat-option>
+              <mat-option [value]="2">Rarely</mat-option>
+              <mat-option [value]="1">Never</mat-option>
+            </mat-select>            
+          </td> 
+          <td class="valigntext">
+            <textarea matInput [disabled]=!selfassessmentenabled type="text"  name="q2" [(ngModel)]="q2"></textarea>
+            <!-- <mat-select [(ngModel)]="q2">
+              <mat-option [value]="4">Mostly</mat-option>
+              <mat-option [value]="3">Sometimes</mat-option>
+              <mat-option [value]="2">Rarely</mat-option>
+              <mat-option [value]="1">Never</mat-option>
+            </mat-select>             -->
+          </td>
+          <td class="valigntext">
+            <mat-select [disabled]=!selfassessmentenabled [(ngModel)]="q3">
+              <mat-option>None</mat-option>
+              <mat-option [value]="4">Mostly</mat-option>
+              <mat-option [value]="3">Sometimes</mat-option>
+              <mat-option [value]="2">Rarely</mat-option>
+              <mat-option [value]="1">Never</mat-option>
+            </mat-select>            
+          </td>
+          <td class="valigntext">
+            <textarea matInput [disabled]=!selfassessmentenabled type="text"  name="q4" [(ngModel)]="q4"></textarea>        
+          </td>    
+        </tr>  
+        
+        <tr class="tr-height">
+          <td class="valigntext">2</td>
+          <td class="valigntext">Trust</td>
+          <td class="valigntext">
+            <mat-select [disabled]=!selfassessmentenabled [(ngModel)]="t1">
+              <mat-option>None</mat-option>
+              <mat-option [value]="4">Mostly</mat-option>
+              <mat-option [value]="3">Sometimes</mat-option>
+              <mat-option [value]="2">Rarely</mat-option>
+              <mat-option [value]="1">Never</mat-option>
+            </mat-select>            
+          </td> 
+          <td class="valigntext">
+            <textarea matInput [disabled]=!selfassessmentenabled type="text"  name="t2" [(ngModel)]="t2"></textarea>          
+          </td>
+          <td class="valigntext">
+            <mat-select [disabled]=!selfassessmentenabled [(ngModel)]="t3">
+              <mat-option>None</mat-option>
+              <mat-option [value]="4">Mostly</mat-option>
+              <mat-option [value]="3">Sometimes</mat-option>
+              <mat-option [value]="2">Rarely</mat-option>
+              <mat-option [value]="1">Never</mat-option>
+            </mat-select>            
+          </td>
+          <td class="valigntext">
+            <textarea matInput [disabled]=!selfassessmentenabled type="text"  name="t4" [(ngModel)]="t4"></textarea>         
+          </td>    
+        </tr> 
+
+        <tr class="tr-height">
+          <td class="valigntext">3</td>
+          <td class="valigntext">Respect</td>
+          <td class="valigntext">
+            <mat-select [disabled]=!selfassessmentenabled [(ngModel)]="r1">
+              <mat-option>None</mat-option>
+              <mat-option [value]="4">Mostly</mat-option>
+              <mat-option [value]="3">Sometimes</mat-option>
+              <mat-option [value]="2">Rarely</mat-option>
+              <mat-option [value]="1">Never</mat-option>
+            </mat-select>            
+          </td> 
+          <td class="valigntext">
+            <textarea matInput type="text" [disabled]=!selfassessmentenabled  name="r2" [(ngModel)]="r2"></textarea>        
+          </td>
+          <td class="valigntext">
+            <mat-select [disabled]=!selfassessmentenabled [(ngModel)]="r3">
+              <mat-option>None</mat-option>
+              <mat-option [value]="4">Mostly</mat-option>
+              <mat-option [value]="3">Sometimes</mat-option>
+              <mat-option [value]="2">Rarely</mat-option>
+              <mat-option [value]="1">Never</mat-option>
+            </mat-select>            
+          </td>
+          <td class="valigntext">
+            <textarea matInput [disabled]=!selfassessmentenabled type="text"  name="r4" [(ngModel)]="r4"></textarea>       
+          </td>    
+        </tr> 
+
+        <tr class="tr-height">
+          <td class="valigntext">4</td>
+          <td class="valigntext">Learning</td>
+          <td class="valigntext">
+            <mat-select [disabled]=!selfassessmentenabled [(ngModel)]="l1">
+              <mat-option>None</mat-option>
+              <mat-option [value]="4">Mostly</mat-option>
+              <mat-option [value]="3">Sometimes</mat-option>
+              <mat-option [value]="2">Rarely</mat-option>
+              <mat-option [value]="1">Never</mat-option>
+            </mat-select>            
+          </td> 
+          <td class="valigntext">
+            <textarea matInput [disabled]=!selfassessmentenabled type="text"  name="l2" [(ngModel)]="l2"></textarea>
+          </td>
+          <td class="valigntext">
+            <mat-select [disabled]=!selfassessmentenabled [(ngModel)]="l3">
+              <mat-option>None</mat-option>
+              <mat-option [value]="4">Mostly</mat-option>
+              <mat-option [value]="3">Sometimes</mat-option>
+              <mat-option [value]="2">Rarely</mat-option>
+              <mat-option [value]="1">Never</mat-option>
+            </mat-select>            
+          </td>
+          <td class="valigntext">
+            <textarea matInput [disabled]=!selfassessmentenabled type="text"  name="l4" [(ngModel)]="l4"> </textarea>         
+          </td>    
+        </tr> 
+        
+    </tbody>
+  </table>
+
+  <div class="col-5 p-2 pull-right">
+    <button mat-raised-button class="col-md-2 btn-theme" (click)="createAntsValues()">Save</button>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div class="table-responsive p-3">
+    <h3>VALUES</h3>
+      <table class="table table-bordered" width="80%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>ANTS Values</th>
+            <th>Did ANTS live this value?</th>
+            <th>Recommendations for improvement</th>
+            <th>Did I live this value?</th>
+            <th>How did I live this value?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="antsValues1" [(ngModel)]="antsValues1">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="antslive1" [(ngModel)]="antslive1">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="recommendations1" [(ngModel)]="recommendations1">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="didILive1" [(ngModel)]="didILive1">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="howDidI1" [(ngModel)]="howDidI1">
+              </mat-form-field> 
+            </td>
+          </tr>
+         
+
+          <tr>
+            <td>2</td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="antsValues2" [(ngModel)]="antsValues2">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="antslive2" [(ngModel)]="antslive2">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="recommendations2" [(ngModel)]="recommendations2">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="didILive2" [(ngModel)]="didILive2">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="howDidI2" [(ngModel)]="howDidI2">
+              </mat-form-field> 
+            </td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="antsValues3" [(ngModel)]="antsValues3">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="antslive3" [(ngModel)]="antslive3">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="recommendations3" [(ngModel)]="recommendations3">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="didILive3" [(ngModel)]="didILive3">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="howDidI3" [(ngModel)]="howDidI3">
+              </mat-form-field> 
+            </td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="antsValues4" [(ngModel)]="antsValues4">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="antslive4" [(ngModel)]="antslive4">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="recommendations4" [(ngModel)]="recommendations4">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="didILive4" [(ngModel)]="didILive4">
+              </mat-form-field> 
+            </td>
+            <td>
+              <mat-form-field class="col-12" appearance="outline">
+              <input matInput type="text"  name="howDidI4" [(ngModel)]="howDidI4">
+              </mat-form-field> 
+            </td>
+          </tr>          
+        </tbody>
+      </table>
+
+      <div class="col-5 pull-right">
+        <button mat-raised-button class="col-md-2 btn-theme" (click)="createAntsValues()">Save</button>
+      </div>
+</div> -->

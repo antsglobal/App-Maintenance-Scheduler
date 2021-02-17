@@ -1,0 +1,24 @@
+@media (max-width: 768px) {
+  /*login page background will be displayed/hidded*/
+  .show-medium {
+    display: none !important;
+  }
+}
+
+@media(min-width:992px) {
+  /*top menu button will be displayed/hidded*/
+  .hide-large {
+    display: none !important;
+  }
+
+  .logo-header {
+    margin-left: var(--logo-ml);
+  }
+}
+
+@media(max-width:991px) {
+  /*full side menu will be displayed*/
+  .show-large {
+    display: none !important;
+  }
+}
