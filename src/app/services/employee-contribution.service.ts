@@ -156,6 +156,5 @@ export class EmployeeContributionService {
     ServiceConstants.baseurlv1 + this.getScoreboardAPI,
     scoreModel
   );
-}
-
+  }
 }

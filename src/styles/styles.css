@@ -20,6 +20,11 @@ button:focus {
   outline: none;
 }
 
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}​​
+
 .fullscreen {
   width: 100vw;
   height: 100vh;
@@ -129,6 +134,10 @@ button:focus {
 
 .sidemnu-selection-margin {
   margin-top: 20px !important;
+}
+
+.search {
+  color: rgba(0,0,0,.87) !important;
 }
 
 .topmenuitem {
@@ -256,4 +265,10 @@ input:-webkit-autofill {
 .scoreboard-bar-chart3{
   background-color: black;
   color: white;
+}
+
+
+input::-webkit-input-placeholder {
+    font-size: 10px;
+    line-height: 3;
 }

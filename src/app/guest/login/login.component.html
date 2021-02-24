@@ -20,8 +20,11 @@
             <mat-error color="warn" *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
           </mat-form-field>
           <mat-checkbox color="primary" class="w-100 m-1">Remember Me!</mat-checkbox>
-          <button mat-raised-button color="primary" class="btn btn-block w-100 m-2" type="button" (click)="login();">Login</button>
-          <button mat-button class="btn btn-link btn-block w-100 m-2" type="submit" (click)="forgotpassword();">Forgot Password</button>
+          <button mat-raised-button color="primary" class="btn btn-block w-100 m-2" type="submit" (click)="login();">Login</button>
+          <button mat-button class="btn btn-link btn-block w-100 m-2" type="button" (click)="forgotpassword();">Forgot Password</button>
+          
+          <!-- <button mat-raised-button color="primary" class="btn btn-block w-100 m-2" type="button" (click)="login();">Login</button>
+          <button mat-button class="btn btn-link btn-block w-100 m-2" type="submit" (click)="forgotpassword();">Forgot Password</button> -->
         </form>
       </div>
     </div>

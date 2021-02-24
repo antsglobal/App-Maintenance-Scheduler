@@ -27,6 +27,18 @@ export class HrManagerComponent implements OnInit {
   speriod : string;
   mperiod : string;
 
+  gtoMinDate: string;
+  mtoMinDate: string;
+  stoMinDate: string;
+
+  gtoDisable: boolean = true;
+  mtoDisable: boolean = true;
+  stoDisable: boolean = true;
+
+  gSave: boolean = true;
+  mSave: boolean = true;
+  sSave: boolean = true;
+
   errorMessage: string;
 
   constructor(
@@ -184,21 +196,90 @@ export class HrManagerComponent implements OnInit {
           {
             this.gfrom=response['data'].fromDate;
             this.gto=response['data'].toDate;
+            if (this.gfrom !== undefined)
+                this.setMinDate();
           }
           else if(activity=="Self Assessment")
           {
             this.sfrom=response['data'].fromDate;
             this.sto=response['data'].toDate;
+            if (this.sfrom !== undefined)
+              this.setMinDate('s');
           }
           else if(activity=="Manager Review")
           {
             this.mfrom=response['data'].fromDate;
             this.mto=response['data'].toDate;
+            if (this.mfrom !== undefined)
+              this.setMinDate('m');
           }
         }
       },
       (error) => {}
     ); 
+  }
+
+
+ setMinDate(activity = 'g', clearToDate = false) {
+    switch(activity) {
+      case 'g':
+        this.gtoMinDate = this.gfrom;
+        if (clearToDate){
+          this.gto = '';
+        }
+        // else if (this.gto != '' && this.gfrom != '')
+        //   this.gSave = true;
+        // console.log(typeof this.gto, typeof this.gfrom)
+        // console.log( this.gto,  this.gfrom)
+        this.gtoDisable = false;
+        break;
+      case 'm':
+        this.mtoMinDate = this.mfrom;
+        if (clearToDate){
+          this.mto = '';
+        }
+        // else if (this.mto != '' && this.mfrom != '')
+        //   this.mSave = true;
+        // console.log(typeof this.mto, typeof this.mfrom, )
+        this.mtoDisable = false;
+        break;
+      case 's':
+        this.stoMinDate = this.sfrom;
+        if (clearToDate) {
+          this.sto = '';
+        }
+        // else if (this.sto != '' && this.sfrom != '')
+        //   this.sSave = true;
+        // console.log(typeof this.sto, typeof this.sfrom)
+        this.stoDisable = false;
+        break;
+    }
+    this.enableSave(activity)
+  }
+
+  enableSave(activity = 'g') {
+    switch(activity) {
+      case 'g':
+        this.gSave = true;
+        if (this.gto != '' && this.gfrom != '')
+          this.gSave = false;
+        console.log(typeof this.gto, typeof this.gfrom)
+        console.log( this.gto,  this.gfrom)
+        console.log( this.gto != '',  this.gfrom != '')
+        break;
+      case 'm':
+        this.mSave = true;
+        if (this.mto != '' && this.mfrom != '')
+          this.mSave = false;
+        console.log(typeof this.mto, typeof this.mfrom, )
+        break;
+      case 's':
+        this.sSave = true;
+        if (this.sto != '' && this.sfrom != '')
+          this.sSave = false;
+        console.log(typeof this.sto, typeof this.sfrom)
+        break;
+    }
   }
 
 }

@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   public department: string;
   public designation: string;
   public doj: string;
-  public projectName: string;
+  public band: string;
   public reason: string;
 
   ngOnInit(): void {
@@ -30,36 +30,16 @@ export class UserProfileComponent implements OnInit {
       next: (goalRecords) => {
         if(goalRecords)
         {
-          console.log(goalRecords);
           this.empId = goalRecords['data'].employeeId;
           this.reportingManager = goalRecords['data'].reportingManager;
           this.managerId = goalRecords['data'].managerId;
           this.department = goalRecords['data'].department;
           this.designation = goalRecords['data'].designation;
           this.doj = goalRecords['data'].dateOfJoining;
-          // this.projectName = goalRecords['data'].managerId;
-          // this.reason = goalRecords['data'].managerId;
-
-          // dateOfJoining: "2020-04-08"
-          // department: "Software"
-          // designation: "Sr. Software Engineer"
-          // email: "kusuma.srikanth@alpha-numero.com"
-          // employeeId: "AN165"
-          // employeeName: "Srikanth Kusuma"
-          // employeePhoneNumber: "9908191920"
-          // isActive: true
-          // isFirstTimeLogin: true
-          // isManager: false
-          // location: "Hyderabad"
-          // managerId: "AN30"
-          // reportingManager: "Rambabu Gilaka"
-          // role: "Employee"
+          this.band = goalRecords['data'].band;
         }        
       },
       error: (err) => (this.errorMessage = err),
     });
-
-
-  }
-
+  }  
 }

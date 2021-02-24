@@ -10,11 +10,18 @@
     </mat-form-field>
     <mat-form-field class="sidemenu-selection p-0 m-2">
       <!-- <mat-label>Period Selection</mat-label> -->
-      <mat-select matNativeControl (selectionChange)="onEmployeeChange()" placeholder="select employee" required [(value)]="selectedEmployee">
+      <!-- <mat-select matNativeControl (selectionChange)="onEmployeeChange()" placeholder="select employee" required [(value)]="selectedEmployee">
         <mat-option *ngFor="let v of getEmployee" [value]="v.employeeId">
           {{v.employeeName}}
         </mat-option>
-      </mat-select>
+      </mat-select> -->
+      <input matInput class="search" type="text"  placeholder="select employee" [formControl]="searchEmployee" [matAutocomplete]="auto"
+        [(value)]="employeeName" required>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onEmployeeChange($event)" [displayWith]="displayProperty">
+        <mat-option *ngFor="let v of filteredEmployees | async" [value]="v">
+          {{v.employeeName}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
 
     <div *ngIf=hrmanagerdisabled>
@@ -45,6 +52,10 @@
 
     <a  class="sidemenuitem m-0 p-2" routerLink="/employee/scoreboard" routerLinkActive="sidemenuitem-active" [routerLinkActiveOptions]="{ exact: true }" title="Score Board" data-bs-toggle="tooltip" data-bs-placement="right">
       <mat-icon>bar_chart</mat-icon><span class="menutext">Score Board</span>      
+    </a>
+
+    <a  class="sidemenuitem m-0 p-2" routerLink="/employee/userupload" routerLinkActive="sidemenuitem-active" [routerLinkActiveOptions]="{ exact: true }" title="Score Board" data-bs-toggle="tooltip" data-bs-placement="right">
+      <mat-icon>upload</mat-icon><span class="menutext">PMS file upload</span>      
     </a>
 
 

@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   inputUserName: string;
   inputPassword: string;
   responseModel: usermodel;
-  private editRequestComponent = RequestOTPComponent;
+  public editRequestComponent = RequestOTPComponent;
   
   constructor(private userService: UserService, private router: Router, public dialog: MatDialog) { }
 

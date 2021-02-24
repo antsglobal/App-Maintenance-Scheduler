@@ -13,28 +13,28 @@
   <ng-container matColumnDef="okrDescription">
     <mat-header-cell *matHeaderCellDef class="px-1 descriptive-info table-first-header-border"><p class="w-100 text-center m-0 p-0 text-dark"><strong>My Objectives & Key Results (OKRs)</strong></p></mat-header-cell>
     <mat-cell *matCellDef="let element" class="px-1 descriptive-info table-first-row-border">
-      <textarea matInput  [disabled]=!goalsettingenabled [(ngModel)]="element.okrDescription" class="w-100"></textarea>
+      <textarea matInput  [disabled]=!goalsettingenabled maxlength="200" [(ngModel)]="element.okrDescription" class="w-100" placeholder="200 characters"></textarea>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="quantitativeMeasure">
     <mat-header-cell *matHeaderCellDef class="px-1 descriptive-info table-header-border"><p class="w-100 text-center m-0 p-0 text-dark"><strong>Quantitative Measure of the Objective</strong></p></mat-header-cell>
     <mat-cell *matCellDef="let element" class="px-1 descriptive-info table-row-border table-line-data">
-      <textarea matInput [disabled]=!goalsettingenabled [(ngModel)]="element.quantitativeMeasure" class="w-100"></textarea>
+      <textarea matInput [disabled]=!goalsettingenabled maxlength="200" [(ngModel)]="element.quantitativeMeasure" class="w-100" placeholder="200 characters"></textarea>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="qualitativeMeasure">
     <mat-header-cell *matHeaderCellDef class="px-1 descriptive-info table-header-border"><p class="w-100 text-center m-0 p-0 text-dark"><strong>Qualitative Measure of the Objective</strong></p></mat-header-cell>
     <mat-cell *matCellDef="let element" class="px-1 descriptive-info table-row-border table-line-data">
-      <textarea matInput [disabled]=!goalsettingenabled [(ngModel)]="element.qualitativeMeasure" class="w-100"></textarea>
+      <textarea matInput [disabled]=!goalsettingenabled maxlength="200" [(ngModel)]="element.qualitativeMeasure" class="w-100" placeholder="200 characters"></textarea>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="descriptionOfMeasure">
     <mat-header-cell *matHeaderCellDef class="px-1 descriptive-info table-header-border"><p class="w-100 text-center m-0 p-0 text-dark"><strong>Description of Actual Performance</strong></p></mat-header-cell>
     <mat-cell *matCellDef="let element" class="px-1 descriptive-info table-row-border table-line-data">
-      <textarea matInput [disabled]=!selfassessmentenabled [(ngModel)]="element.descriptionOfMeasure" class="w-100"></textarea>
+      <textarea matInput [disabled]=!selfassessmentenabled maxlength="200" [(ngModel)]="element.descriptionOfMeasure" class="w-100" placeholder="200 characters"></textarea>
     </mat-cell>
   </ng-container>
 
@@ -60,7 +60,7 @@
   <ng-container matColumnDef="managerComments">
     <mat-header-cell *matHeaderCellDef class="px-1 other-info table-header-border"><p class="w-100 text-center m-0 p-0 text-dark"><strong>Manager's Comments</strong></p></mat-header-cell>
     <mat-cell *matCellDef="let element" class="px-1 other-info table-row-border table-line-data">
-      <textarea matInput [disabled]=!managerreviewenabled [(ngModel)]="element.managerComments" class="w-100"></textarea>
+      <textarea matInput [disabled]=!managerreviewenabled maxlength="200" [(ngModel)]="element.managerComments" class="w-100"  placeholder="200 characters"></textarea>
     </mat-cell>
   </ng-container>
 

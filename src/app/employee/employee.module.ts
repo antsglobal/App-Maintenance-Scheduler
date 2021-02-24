@@ -21,15 +21,18 @@ import { ChartsModule } from 'ng2-charts';
 import { RequestOTPComponent } from './request-otp/request-otp.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserUploadComponent } from './user-upload/user-upload.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [DashboardComponent, EmployeeComponent, GoalsettingComponent, EmployeecontributionComponent, AntsvaluesComponent, CareergrowthComponent, ManagerratingComponent, ScoreboardComponent, SidemenuComponent, TopmenuComponent, ProfileComponent, HrManagerComponent, RequestOTPComponent, ResetPasswordComponent, UserProfileComponent],
+  declarations: [DashboardComponent, EmployeeComponent, GoalsettingComponent, EmployeecontributionComponent, AntsvaluesComponent, CareergrowthComponent, ManagerratingComponent, ScoreboardComponent, SidemenuComponent, TopmenuComponent, ProfileComponent, HrManagerComponent, RequestOTPComponent, ResetPasswordComponent, UserProfileComponent, UserUploadComponent],
   imports: [
     CommonModule,
     MaterialModule,
     HttpClientModule,
     EmployeeRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     ChartsModule
   ]
 })

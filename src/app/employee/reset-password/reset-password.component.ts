@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from 'src/app/guest/login/login.component';
 import { usermodel } from 'src/app/models/usermodel';
 import { UserService } from 'src/app/Services/UserService';
 
@@ -13,7 +12,6 @@ export class ResetPasswordComponent implements OnInit {
 
   public newpassword : string;
   public confirmpassword: string;
-  private loginComponent = LoginComponent;
   constructor(private userService: UserService, public dialog: MatDialog) { }
 
   ngOnInit(): void {

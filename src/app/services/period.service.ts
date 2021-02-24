@@ -11,6 +11,7 @@ export class PeriodService {
 
   createPeriodApiUrl = '/createperiod';
   getActivePeriodApiUrl = '/getallactiveperiods';
+  getActiveAllPeriodApiUrl = '/getallperiods';
   getClosedPeriodApiUrl = '/getallclosedperiods';
   updatePeridApiUrl = '/updateperiod';
   periodAccessApiUrl= '/createperiodaccess';
@@ -28,6 +29,13 @@ export class PeriodService {
   public getPeriods(userModel: usermodel): Observable<string> { 
     return this.httpClient.post<string>(
       ServiceConstants.baseurlv1 + this.getActivePeriodApiUrl,
+      userModel
+    );
+  }
+
+  public getAllPeriods(userModel: usermodel): Observable<string> { 
+    return this.httpClient.post<string>(
+      ServiceConstants.baseurlv2 + this.getActiveAllPeriodApiUrl,
       userModel
     );
   }

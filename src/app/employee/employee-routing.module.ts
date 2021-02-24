@@ -10,6 +10,7 @@ import { GoalsettingComponent } from './goalsetting/goalsetting.component';
 import { ManagerratingComponent } from './managerrating/managerrating.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserUploadComponent } from './user-upload/user-upload.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: UserProfileComponent
+      },
+      {
+        path: 'userupload',
+        component: UserUploadComponent
       }
       
     ]

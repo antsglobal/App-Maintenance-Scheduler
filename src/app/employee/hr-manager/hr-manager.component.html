@@ -121,14 +121,13 @@
                   </mat-form-field>
                 </td>
                 <td class="valigntext">
-                  <!-- <input class="form-control" type="date"> -->
                   <mat-form-field class="col-12" appearance="outline">
-                    <input matInput type="date"  name="gfrom" [(ngModel)]="gfrom" placeholder="key in period">
+                    <input matInput type="date" (change)="setMinDate('g', true)" name="gfrom" [(ngModel)]="gfrom" placeholder="key in period">
                   </mat-form-field>          
                 </td>
                 <td class="valigntext">
                   <mat-form-field class="col-12" appearance="outline">
-                    <input matInput type="date"  name="gto" [(ngModel)]="gto" placeholder="key in period">
+                    <input matInput type="date"  [disabled]="gtoDisable" name="gto" [(ngModel)]="gto" placeholder="key in period" [min]="gtoMinDate">
                   </mat-form-field>  
                 </td>
                 <td class="valigntext">
@@ -150,12 +149,14 @@
               </td>
               <td class="valigntext">
                 <mat-form-field class="col-12" appearance="outline">
-                  <input matInput type="date"  name="sfrom" [(ngModel)]="sfrom" placeholder="key in period">
+                  <!-- <input matInput type="date"  name="sfrom" [(ngModel)]="sfrom" placeholder="key in period"> -->
+                  <input matInput type="date" (change)="setMinDate('s',true)" name="sfrom" [(ngModel)]="sfrom" placeholder="key in period">
                 </mat-form-field>   
               </td>
               <td class="valigntext">
                 <mat-form-field class="col-12" appearance="outline">
-                  <input matInput type="date"  name="sto" [(ngModel)]="sto" placeholder="key in period">
+                  <!-- <input matInput type="date"  name="sto" [(ngModel)]="sto" placeholder="key in period"> -->
+                  <input matInput type="date" [disabled]="stoDisable"  name="sto" [(ngModel)]="sto" placeholder="key in period" [min]="stoMinDate"> 
                 </mat-form-field>  
               </td>
               <td class="valigntext">
@@ -176,12 +177,14 @@
               </td>
               <td class="valigntext">
                 <mat-form-field class="col-12" appearance="outline">
-                  <input matInput type="date"  name="mfrom" [(ngModel)]="mfrom" placeholder="key in period">
+                  <input matInput type="date" (change)="setMinDate('m', true)" name="mfrom" [(ngModel)]="mfrom" placeholder="key in period">
+                  <!-- <input matInput type="date"  name="mfrom" [(ngModel)]="mfrom" placeholder="key in period"> -->
                 </mat-form-field>  
               </td>
               <td class="valigntext">
                 <mat-form-field class="col-12" appearance="outline">
-                  <input matInput type="date"  name="mto" [(ngModel)]="mto" placeholder="key in period">
+                  <!-- <input matInput type="date"  name="mto" [(ngModel)]="mto" placeholder="key in period"> -->
+                  <input matInput type="date" [disabled]="mtoDisable" name="mto" [(ngModel)]="mto" placeholder="key in period" [min]="mtoMinDate">
                 </mat-form-field>  
               </td>
               

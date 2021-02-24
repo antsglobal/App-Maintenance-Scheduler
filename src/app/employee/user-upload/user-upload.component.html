@@ -1,0 +1,13 @@
+<p class="page-header h3 m-3">User Excel Uploading</p>
+<mat-divider></mat-divider>
+<div class="d-flex justify-content-center mt-5"> 
+  <input class="m-1 form-control" type="file" id="file" (change)="handleFileInput($event.target.files)">
+</div>
+<div class="d-flex justify-content-md-end  justify-content-center"> 
+  <button mat-flat-button class="m-1 btn-theme" (click)="uploadFileToActivity()">Upload
+    <mat-icon>upload</mat-icon>
+  </button>
+  <button mat-flat-button class="m-1 btn-theme" (click)="downloadFileToActivity()">Download
+    <mat-icon>download</mat-icon>
+  </button>
+</div>

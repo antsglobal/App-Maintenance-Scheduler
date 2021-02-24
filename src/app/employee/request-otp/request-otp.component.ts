@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from 'src/app/guest/login/login.component';
 import { usermodel } from 'src/app/models/usermodel';
 import { UserService } from 'src/app/Services/UserService';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
