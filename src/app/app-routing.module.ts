@@ -12,8 +12,8 @@ const routes: Routes = [
     loadChildren: () => import('./guest/guest.module').then(module => module.GuestModule)
   },
   {
-    path: 'employee',
-    loadChildren: () => import('./employee/employee.module').then(module => module.EmployeeModule)
+    path: 'assets',
+    loadChildren: () => import('./assets/assets.module').then(module => module.AssetsModule)
   }
 ];
 

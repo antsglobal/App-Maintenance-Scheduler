@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import './colors.css';
-@import './materialelements.css';
-@import './variables.css';
-@import './mediaquery.css';
+@import "./colors.css";
+@import "./materialelements.css";
+@import "./variables.css";
+@import "./mediaquery.css";
 
 body {
   width: 100%;
@@ -21,17 +21,16 @@ button:focus {
 }
 
 .form-control:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}​​
-
-.fullscreen {
+  outline: none !important;
+  box-shadow: none !important;
+}
+​​ .fullscreen {
   width: 100vw;
   height: 100vh;
 }
 
 .login-bg {
-  background-image: url('../assets/images/login-bg.jpg');
+  background-image: url("../assets/images/login-bg.jpg");
 }
 
 .bg-regular {
@@ -41,9 +40,10 @@ button:focus {
 }
 
 .anex-small {
-  margin: 4em;
-  width: 150px;
-  height: 99px;
+  margin-left: 6em;
+  margin-top: 3em;
+  width: 217px;
+  height: 42px;
 }
 
 .header-spacer {
@@ -55,32 +55,35 @@ button:focus {
 }
 
 .menu {
-  background-color: var(--color-secondary);
-  height: calc(100vh - var(--appheader-height));
+  background-color: var(--color-secondary);  
   margin-top: var(--appheader-height);
   position: sticky;
+  height: calc(100vh - var(--appheader-height));
 }
 
 .largesidemenu {
   width: var(--largesidemenu-width);
 }
 
-  .largesidemenu > a > span {
-    display: inline;
-  }
+.largesidemenu > ul > li > a > span,
+.largesidemenu > ul > li > ul > li > a > div > span {
+  display: inline;
+}
 
 .smallsidemenu {
   width: var(--smallsidemenu-width);
   transition: width 0.5s;
 }
 
-  .smallsidemenu > a > span {
-    display: none;
-  }
+.smallsidemenu > ul > li > a > span,
+.smallsidemenu > ul > li > ul > li > a > div > span {
+  display: none;
+}
 
 .page-content {
   display: inline;
   overflow-x: hidden;
+  height: 86vh;
 }
 
 .page-header {
@@ -105,10 +108,10 @@ button:focus {
   transition: margin 0.5s, color 1s, background-color 1s;
 }
 
-  .sidemenuitem:hover {
-    color: var(--color-light);
-    background-color: var(--color-gray);
-  }
+.sidemenuitem:hover {
+  color: var(--color-light);
+  background-color: var(--color-gray);
+}
 
 .sidemenuitem-active {
   color: var(--color-white);
@@ -118,10 +121,10 @@ button:focus {
   /* margin-left: 5px !important; */
 }
 
-  .sidemenuitem-active:hover {
-    color: var(--color-white);
-    background-color: var(--color-primary);
-  }
+.sidemenuitem-active:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
 
 .sidemenu-selection {
   color: var(--color-white);
@@ -137,7 +140,7 @@ button:focus {
 }
 
 .search {
-  color: rgba(0,0,0,.87) !important;
+  color: rgba(0, 0, 0, 0.87) !important;
 }
 
 .topmenuitem {
@@ -151,10 +154,10 @@ button:focus {
   width: inherit;
 }
 
-  .topmenuitem:hover {
-    color: var(--color-white);
-    background-color: var(--color-gray);
-  }
+.topmenuitem:hover {
+  color: var(--color-white);
+  background-color: var(--color-gray);
+}
 
 .topmenuitem-active {
   color: var(--color-white);
@@ -162,10 +165,10 @@ button:focus {
   border-radius: 5px;
 }
 
-  .topmenuitem-active:hover {
-    color: var(--color-white);
-    background-color: var(--color-primary);
-  }
+.topmenuitem-active:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
 
 .menucollapse {
   position: absolute;
@@ -191,6 +194,22 @@ button:focus {
   background-color: var(--color-primary);
   color: var(--color-white);
   vertical-align: bottom;
+}
+
+.btn-search {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  vertical-align: bottom;
+  height: 52px;
+  width: 52px;
+}
+
+.btn-save {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  vertical-align: bottom;
+  height: 52px;
+  width: 120px;
 }
 
 .valigntext {
@@ -249,26 +268,256 @@ button:focus {
   color: var(--color-primary);
 }
 
-input:-webkit-autofill {
+/* input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
+} */
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px blanchedalmond inset !important;
 }
 
-.scoreboard-bar-chart1{
-  width: 80%;
-  height: 80%;
+textarea::-webkit-input-placeholder {
+  font-size: 7px;
+  line-height: 3;
 }
-
-.scoreboard-bar-chart2{
-  background-color: rgb(69, 69, 70);
-}
-
-.scoreboard-bar-chart3{
-  background-color: black;
-  color: white;
-}
-
 
 input::-webkit-input-placeholder {
-    font-size: 10px;
-    line-height: 3;
+  font-size: 7px;
+  line-height: 3;
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+.descriptive-info-second {
+  min-width: 100px !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.popup-title {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  padding: 10px 0px 0 0;
+  border-radius: 5px;
+}
+
+.popup-footer {
+  margin: 1% 0% 0 0;
+}
+
+.popup-footer-btn {
+  margin: 0 0 0 5% !important;
+  float: right;
+}
+
+.smallsidemenu .sidemenu-form-field {
+  width: var(--smallsidemenu-width);
+}
+
+.mat-card-page {
+  padding: 0px !important;
+  margin: 5px !important;
+}
+.mat-card-header-page {
+  padding: 5px;
+  background-color: var(--color-light);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: black;
+}
+.huge-icon {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.huge-icon.active {
+  background-color: var(--color-gray);
+}
+
+.huge-icon.complete {
+  background-color: var(--color-primary);
+}
+
+.huge-icon.disabled {
+  background-color: var(--color-gray);
+}
+
+.example-ripple-container {
+  cursor: pointer;
+  text-align: center;
+
+  width: 300px;
+  height: 300px;
+  line-height: 300px;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/** Styles to make the demo look better. */
+.example-ripple-checkbox {
+  margin: 6px 12px 6px 0;
+}
+
+.example-ripple-form-field {
+  margin: 0 12px 0 0;
+}
+
+.item {
+  position: relative;
+  display: inline-block;
+}
+
+.notify-badge {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  background: var(--color-secondary);
+  text-align: center;
+  border-radius: 30px 30px 30px 30px;
+  color: var(--color-primary);
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+.notify-badge.top40 {
+  top: 40px !important;
+}
+
+.notify-badge.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.show-welocomeText{
+  color: var( --color-primary)
+}
+
+.show-welocomeText1{
+  color: var( --color-light)
+}
+
+.welcome-box {
+    width: 80% !important;
+    left: 10%;
+    position: relative !important;
+    top: 90px;
+    color:white;
+  }
+.welcome-text {
+    font-size: 30px !important;
+    font-weight: bold !important;
+  }
+.welcome-main {
+    font-size: 38px !important;
+    margin-top: 10px;
+    font-weight: bold !important;
+  }
+  .welcome-subtext{
+    font-size: 20px !important;
+  }
+
+  .name-color{
+    color:var(--color-primary);
+  }
+
+  .login-background{
+    background:blanchedalmond !important;
+  }
+
+  .cursor-pointer{
+  cursor: pointer;
+}
+
+.mat-simple-snackbar-action .mat-button  {
+  color: var(--color-light) !important;
+  background: var(--color-primary);
+}
+
+.mat-progress-bar {
+  height: 10px !important;
+  border-radius: 5px;
+}
+
+.fs-25 {
+  font-size: 25Px !important;
+}
+
+.fs-15 {
+  font-size: 15Px !important;
+}
+.fs-50 {
+  font-size: 50Px !important;
+}
+.page-content {
+  background: var(--color-background);
+}
+
+.font-style-screens{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.mat-list-item:hover {
+  background-color: var(--color-background);
+}
+
+a.recent-trip-button:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: 20px;
+}
+
+.mat-header-cell{
+  font-weight: bold !important;
+  color: black !important;
+  font-size: 15px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+agm-map {
+  height: 300px;
+}
+
+.inprogress .pulse {
+  height: 100px;
+  width: 100px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  position: absolute;
+  animation: pulse 1s linear infinite;
+  animation-delay: 0.3s;
+  z-index: -1;
+  top: 0%;
+  left: 0%;
+  opacity: 0;
+}
+
+@keyframes pulse {
+  0% {
+      transform: scale(0.5);
+      opacity: 0
+  }
+
+  50% {
+      transform: scale(1);
+      opacity: .5
+  }
+
+  100% {
+      transform: scale(1.3);
+      opacity: 0
+  }
+}
+
+.header-valign{
+  vertical-align: middle !important;
 }

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../../Services/UserService';
-import { usermodel } from '../../models/usermodel';
-import { GlobalConstants } from 'src/app/variables/globalvariables';
-import { RequestOTPComponent } from 'src/app/employee/request-otp/request-otp.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UserModel } from 'src/app/models/usermodel';
+import { UserService } from '../../services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +14,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class LoginComponent implements OnInit {
   inputUserName: string;
   inputPassword: string;
-  responseModel: usermodel;
-  public editRequestComponent = RequestOTPComponent;
-  
-  constructor(private userService: UserService, private router: Router, public dialog: MatDialog) { }
+
+  constructor(private router: Router, public dialog: MatDialog, private snackBar: MatSnackBar, private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -38,54 +35,42 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const newUser: usermodel = {
-      email: this.inputUserName,
-      password: this.inputPassword
-    } as usermodel;
+    console.log(this.email.status, this.password.status);
+    if (this.email.status == 'VALID' && this.password.status == 'VALID') {
 
-    this.userService
-      .login(newUser)
-      .toPromise()
-      .then(
-        (response) => {
-          if (response) {
-            if (
-              response['message'].toLowerCase() ==
-              'employee logged in successfully'
-            ) {
-              this.responseModel = response['data'];
-              sessionStorage.setItem('name', this.responseModel.employeeName.toString());
-              sessionStorage.setItem("loggedInemployeeId", this.responseModel.employeeId);
-              sessionStorage.setItem("loggedInRole", this.responseModel.role);
-              sessionStorage.setItem("emailId", this.responseModel.email);
+      const loginDetails: UserModel = {
+        userEmail: this.inputUserName,
+        userPassword: this.inputPassword
+      } as UserModel;
 
-              console.log(response['data']);
-              console.log(this.responseModel.isFirstTimeLogin);
-              if(this.responseModel.isFirstTimeLogin.toString() == 'true')
-              {
-                this.router.navigate(['/employee/goalsetting']);
-              }
-              else if(this.responseModel.isFirstTimeLogin.toString() == 'false')
-              {
-                this.dialog.open(this.editRequestComponent, {
-                  data: { },
-                });
-              }
-
-            } else {
-              window.alert(response['message']);
+      this.userService.login(loginDetails).toPromise().then(response => {
+        if (response) {
+          console.log(response, response['status'], response['message'].toLowerCase())
+          if (response['status'] == 'true' && response['message'].toLowerCase() == 'login succes') {
+            let data = response['data'];
+            sessionStorage.setItem("loggedInemployeeId", data.userId);
+            sessionStorage.setItem("loggedInemployeeEmail", data.userEmail);
+            sessionStorage.setItem("loggedInemployeeName", data.userName);
+            if (data.userName == "Demo") {
+              this.router.navigate(['/assets/assetsummary']);
             }
-          }
-        },
-        (error) => {
-          window.alert('Invalid Credentials');
-        }
-      );
-  }
+            else {
+              this.router.navigate(['/assets/dashboard']);
+            }
 
-  forgotpassword(){
-    this.dialog.open(this.editRequestComponent, {
-      data: { },
-    });
+          }
+        }
+      }, (error) => {
+        let message = "Please provide valid credentials to login."
+        if (error.error && error.error['message']) {
+          message = error.error['message']
+        }
+        this.snackBar.open(message, 'Ok', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: 'status-message'
+        });
+      })
+    }
   }
 }

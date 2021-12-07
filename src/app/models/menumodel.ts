@@ -1,5 +1,6 @@
 export interface menumodel {
-  icon: string,
-  text: string,
-  url: string
-}
+    icon: string,
+    text: string,
+    url: string,
+    permission: [string]
+  }

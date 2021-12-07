@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+	// mqtt: {
+	// 	server: '48eb834e5bfc48fdb7a8c21995b506eb.s1.eu.hivemq.cloud',
+  //   port: 8883,
+  //   protocol: 'mqtts',
+  //   username: 'ants_mqtt',
+  //   password: 'Ants@123'
+	// }
 };
 
 /*

@@ -1,45 +1,26 @@
 [
-  
+  {
+    "icon": "dashboard",
+    "text": "Dashboard",
+    "url": "/employee/dashboard",
+    "children":[]
+  },
+  {
+    "icon": "loading",
+    "text": "Dumper",
+    "url": "/employee/dumperdetails",
+    "children":[]
+  },
   {
     "icon": "people",
-    "text": "HR Manager",
-    "url": "/employee/hrmanager",
+    "text": "Duration of the trip",
+    "url": "/employee/tripduration",
     "children":[]
   },
   {
     "icon": "extension",
-    "text": "Goal Setting",
-    "url": "/employee/goalsetting",
-    "children":[]
-  },
-  {
-    "icon": "people",
-    "text": "Employee Contribution",
-    "url": "/employee/employeecontribution",
-    "children":[]
-  },
-  {
-    "icon": "wifi_tethering",
-    "text": "ANTS Values",
-    "url": "/employee/antsvalues",
-    "children":[]
-  },
-  {
-    "icon": "moving",
-    "text": "Career Growth",
-    "url": "/employee/careergrowth",
-    "children":[]
-  },
-  {
-    "icon": "stars",
-    "text": "Manager Rating",
-    "url": "/employee/managerrating",
-    "children":[]
-  },
-  {
-    "icon": "bar_chart",
-    "text": "Score Board",
-    "url": "/employee/scoreboard",
+    "text": "Dumper Status",
+    "url": "/employee/dumperstatus",
     "children":[]
   }
 ]

@@ -1,13 +1,23 @@
 <div class="row login-bg bg-regular h-100 m-0 p-0">
-  <div class="show-medium col-sm-8 h-100">
-    <!-- <img src="../../../assets/images/anex-logo.png" class="anex-small"> -->
+  <div class="show-medium col-sm-9 h-100">
+    <img src="../../../assets/images/at-logo-hor.png" class="anex-small">
+
+    <div class="welcome-box">
+      <h5 class="welcome-text pt-5 p-2"> Welcome to</h5>
+      <h3 class="welcome-main pt-4 p-2"><span class="name-color">Alpha-Numero</span> Asset Management System</h3>
+      <p class="welcome-subtext p-2">We help people track, manage and support their assets throughout their life cycle
+      </p>
+    </div>
+
+
   </div>
-  <div class="row m-0 p-2 col-xsm-12 col-sm-4 h-100 bg-white align-content-center">
-    <div class="card border-0">
-      <div class="text-center">
-        <img src="../../assets/images/anex-logo-dark.png" width="50%" />
+  <div class="row m-0 p-2 col-xsm-12 col-sm-3 h-100 login-background align-content-center">
+    <div class="card border-0 login-background">
+      <div class="text-center login-background">
+        <img src="../../assets/images/favicon.png" width="30%" />
       </div>
-      <div class="card-body">
+
+      <div class="card-body login-background">
         <form>
           <mat-form-field appearance="outline" class="w-100 m-1" color="accent">
             <mat-label>Email Id</mat-label>
@@ -20,11 +30,9 @@
             <mat-error color="warn" *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
           </mat-form-field>
           <mat-checkbox color="primary" class="w-100 m-1">Remember Me!</mat-checkbox>
-          <button mat-raised-button color="primary" class="btn btn-block w-100 m-2" type="submit" (click)="login();">Login</button>
-          <button mat-button class="btn btn-link btn-block w-100 m-2" type="button" (click)="forgotpassword();">Forgot Password</button>
-          
-          <!-- <button mat-raised-button color="primary" class="btn btn-block w-100 m-2" type="button" (click)="login();">Login</button>
-          <button mat-button class="btn btn-link btn-block w-100 m-2" type="submit" (click)="forgotpassword();">Forgot Password</button> -->
+          <button mat-raised-button color="primary" class="btn btn-block w-100 m-2" type="submit"
+            (click)="login();">Login</button>
+          <button mat-button class="btn btn-link btn-block w-100 m-2" type="button">Forgot Password</button>
         </form>
       </div>
     </div>
