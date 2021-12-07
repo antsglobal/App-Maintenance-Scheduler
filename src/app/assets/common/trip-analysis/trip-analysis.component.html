@@ -1,0 +1,39 @@
+<div class="row mb-3">
+    <div class="col-12">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <mat-icon>query_stats</mat-icon> Trip Analysis
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <!-- <div class="row m-0 p-0">
+                    <mat-form-field appearance="outline" class="col-4">
+                        <mat-label>Select DumperId</mat-label>
+                        <mat-select [formControl]="dumperIds" multiple>
+                            <mat-option *ngFor="let dumper of dumperList" [value]="dumper">{{dumper}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-3" appearance="outline">
+                        <input matInput type="date" name="fromDate" [(ngModel)]="fromDate">
+                    </mat-form-field>
+
+                    <mat-form-field class="col-3" appearance="outline">
+                        <input matInput type="date" name="toDate" [(ngModel)]="toDate">
+                    </mat-form-field>
+
+                    <button mat-raised-button class="col-2 btn-search">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div> -->
+                <div id="chart">
+                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                        [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions"
+                        [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis" [stroke]="chartOptions.stroke"
+                        [grid]="chartOptions.grid" [fill]="chartOptions.fill" [annotations]="chartOptions.annotations">
+                    </apx-chart>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

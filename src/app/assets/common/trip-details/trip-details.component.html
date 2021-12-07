@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="row col-12 m-0 py-2">
+        <div class="col-11">
+            <h1 class="m-0">{{ popupTitle }}</h1>
+        </div>
+        <!-- <button > -->
+        <mat-icon mat-button matDialogClose class="col-1">close</mat-icon>
+        <!-- X
+        </button> -->
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row col-12 m-0 mt-1">
+        <div class="col-xl-4 col-md-4 m-0 p-1">
+            <img src="../../../assets/images/truck.png" style="width: 100%;" />
+            <h4 align="center">Dumper ID</h4>
+            <h2 align="center">{{ data.tripData.dumperId }}</h2>
+        </div>
+        <div class="col-xl-8 col-md-8 m-0 p-0">
+            <table class="table table-bordered dataTable" width="100%" cellspacing="0" role="grid"
+                aria-describedby="dataTable_info" style="width: 100%;">
+                <tbody>
+                    <tr role="row" class="odd">
+                        <td>
+                            <mat-icon>location_on</mat-icon>
+                            <b>Trip Start</b>
+                        </td>
+                        <td>{{ tripDetails.loadingAt }}</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td>
+                            <mat-icon>location_on</mat-icon>
+                            <b>Trip End</b>
+                        </td>
+                        <td>{{ tripDetails.unloadingAt }}</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td>
+                            <mat-icon>
+                                schedule
+                            </mat-icon>
+                            <b>Start Time</b>
+                        </td>
+                        <td>{{ tripDetails.startTime | date:'dd MMM, YYYY HH:mm':'UTC' }}</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td>
+                            <mat-icon>schedule</mat-icon>
+                            <b>End time</b>
+                        </td>
+                        <td>{{ tripDetails.endTime | date:'dd MMM, YYYY HH:mm':'UTC' }}</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td>
+                            <mat-icon>person</mat-icon>
+                            <b>Driver Name</b>
+                        </td>
+                        <td>John</td>
+                        <!-- <td>{{ tripDetails.unloadingAt }}</td> -->
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td>
+                            <mat-icon>phone</mat-icon>
+                            <b>Driver Contact</b>
+                        </td>
+                        <td> +91 9876543210 </td>
+                        <!-- <td>{{ tripDetails.unloadingAt }}</td> -->
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

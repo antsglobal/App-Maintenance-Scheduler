@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <div class="main-content">
+        <div class="col-12 p-0 mt-4">
+            <mat-card class="mat-card-page">
+                <mat-card-header class="mat-card-header-page">
+
+                    <mat-card-title class="mat-card-title-page">
+                        <mat-icon>dns</mat-icon> MQTT Publisher
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="mat-card-content-page p-2">
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-table #table [dataSource]="deviceData">
+
+                                <ng-container matColumnDef="deviceId">
+                                    <mat-header-cell *matHeaderCellDef> Device Id</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.deviceId}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="deviceTopic">
+                                    <mat-header-cell *matHeaderCellDef> Device Topic </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.deviceTopic}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="status">
+                                    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+
+                                    <mat-cell *matCellDef="let element">
+                                        <mat-slide-toggle class="m-2" (change)="updateDeviceInfo(element)" 
+                                       [checked]="getDeviceStatus(element.status)" name="element.deviceId">
+                                        </mat-slide-toggle>
+                                        {{element.status}}
+                                    </mat-cell>
+                                </ng-container>
+
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                            </mat-table>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-footer>
+
+                </mat-card-footer>
+            </mat-card>
+            <!-- <app-mqtt-subscriber></app-mqtt-subscriber> -->
+        </div>
+    </div>
+</div>

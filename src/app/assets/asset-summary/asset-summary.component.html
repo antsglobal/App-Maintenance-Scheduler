@@ -1,0 +1,108 @@
+<div class="wrapper">
+    <div class="main-content">
+        <div class="col-12 p-0 mt-4">
+            <mat-card class="mat-card-page">
+                <mat-card-header class="mat-card-header-page">
+                    <mat-card-title class="mat-card-title-page">
+                        <!-- <mat-icon>search</mat-icon> -->
+                        Asset Summary
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="mat-card-content-page p-20" *ngIf="fetchData">
+                    <!-- <div class="row m-0 p-0">
+                        <mat-form-field appearance="outline" class="col-4">
+                            <mat-label>Device Location</mat-label>
+                            <mat-select>
+                                <mat-option>None</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <button mat-raised-button class="col-2 btn-search">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div> -->
+
+                    <div class="row pt-4">
+                        <div class="col-md-8">
+                            <div class="asset_floor_plan">
+                                <!-- <div class="asset-finder  status-active pinkBg">
+                                                    <span class="value">ATD003</span>
+                                                    <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                                                    <span class="ripple pinkBg"></span>
+                                                    <span class="ripple pinkBg"></span>
+                                                    <span class="ripple pinkBg"></span>
+                                                </div> -->
+                                <!-- <img src="../../../assets/images/asset-floor-plan.jpg" width="100%" /> -->
+                                <div class="row px-5 pb-4">
+                                    <div class="col-md-4 m-0 p-0 item cursor-pointer"
+                                        (click)="getAssetsListByLocation(5)">
+                                        <span class="notify-badge" [ngClass]="{'active': activeLocationId == 5}">{{
+                                            getLocationAssetCount(5) }}</span>
+                                        <img src="../../../assets/images/room-1.png" width="100%" />
+                                    </div>
+                                    <div class="col-md-4 m-0  p-0 item cursor-pointer"
+                                        (click)="getAssetsListByLocation(2)">
+                                        <span class="notify-badge" [ngClass]="{'active': activeLocationId == 2}">{{
+                                            getLocationAssetCount(2) }}</span>
+                                        <img src="../../../assets/images/room-1.png" width="100%" />
+                                    </div>
+                                    <div class="col-md-4 m-0  p-0 item cursor-pointer"
+                                        (click)="getAssetsListByLocation(3)">
+                                        <span class="notify-badge" [ngClass]="{'active': activeLocationId == 3}">{{
+                                            getLocationAssetCount(3) }}</span>
+                                        <img src="../../../assets/images/room-2.png" width="100%" />
+                                    </div>
+                                    <div class="col-md-3 m-0  p-0 item cursor-pointer"
+                                        (click)="getAssetsListByLocation(4)">
+                                        <span class="notify-badge top40"
+                                            [ngClass]="{'active': activeLocationId == 4}">{{
+                                            getLocationAssetCount(4) }}</span>
+                                        <img src="../../../assets/images/room-4.png" width="100%" height="80%" />
+                                    </div>
+                                    <div class="col-md-9 m-0 p-0">
+                                        <img src="../../../assets/images/room-5.png" width="100%" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" *ngIf="displayAssetLocations">
+                            <div class="card-event card border">
+                                <div class="card-body border-left">
+                                    <div class="card-body border-left">
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col">
+                                                <h2 class="m-0">{{ activeLocationName }} Devices Info
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <table class="table table-bordered dataTable" width="100%" cellspacing="0"
+                                            role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                            <tbody>
+                                                <tr *ngFor="let asset of locationAssetsList;" role="row" class="odd">
+                                                    <td> {{ asset.AssetName }} </td>
+                                                    <td> {{ asset.AssetCount }} </td>
+                                                </tr>
+                                                <tr role="row" class="odd">
+                                                    <td>Total Devices</td>
+                                                    <td> {{ totalAsssetsInLocation }} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="text-muted mt-3 mb-0">
+                                            <a href="#" data-toggle="modal" data-target="#exampleModal"
+                                                class="devices-info text-white">Devices Info
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+
+                <mat-card-footer>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>

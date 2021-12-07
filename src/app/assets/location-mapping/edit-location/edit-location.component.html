@@ -1,0 +1,58 @@
+<mat-card>
+    <mat-card-header class="mat-card-header-page">
+        <mat-card-title class="mat-card-title-page pt-3">
+            {{pageState}} Location Mapping
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content-page p-1">
+        <form [formGroup]="locationMappingForm" class="popupform" *ngIf="formPrepared">
+            <div class="blockwrap">
+                <div class="row">
+                    <mat-form-field class="col-6" appearance="outline">
+                        <mat-label>RFID Reader Code</mat-label>
+                        <input matInput (change)="removeWhiteSpaces(locationMappingForm.controls.rFIDReaderCode)"
+                            placeholder="RFID Reader Code" formControlName="rFIDReaderCode" />
+                        <mat-error *ngIf="locationMappingForm.controls.rFIDReaderCode.invalid">
+                            Please enter valid RFID Reader Code.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-6" appearance="outline">
+                        <mat-label>Location</mat-label>
+                        <input matInput (change)="removeWhiteSpaces(locationMappingForm.controls.locationDescription)"
+                            placeholder="Location" formControlName="locationDescription" />
+                        <mat-error *ngIf="locationMappingForm.controls.locationDescription.invalid">
+                            Please enter valid Location.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="col-6" appearance="outline">
+                        <mat-label>CH Antenna</mat-label>
+                        <input matInput (change)="removeWhiteSpaces(locationMappingForm.controls.chAntenna)"
+                            placeholder="CH Antenna" formControlName="chAntenna" />
+                        <mat-error *ngIf="locationMappingForm.controls.chAntenna.invalid">
+                            Please enter valid CH Antenna(numbers only).
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-6" appearance="outline">
+                        <mat-label>Sub CH</mat-label>
+                        <input matInput (change)="removeWhiteSpaces(locationMappingForm.controls.subch)"
+                            placeholder="Sub CH" formControlName="subch" />
+                        <mat-error *ngIf="locationMappingForm.controls.subch.invalid">
+                            Please enter valid Sub CH(numbers only).
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-footer>
+        <div class="col-md-12 float-right popup-footer" *ngIf="formPrepared">
+            <button type="submit" color="primary" (click)="onSubmit(locationMappingForm.value)" mat-raised-button
+                [disabled]="!locationMappingForm.valid" class="col-md-2 btn-theme  popup-footer-btn">
+                {{pageState}}
+            </button>
+            <button mat-button (click)="closePopup()" class="btn col-md-2 popup-footer-btn">Cancel</button>
+        </div>
+    </mat-card-footer>
+</mat-card>

@@ -1,0 +1,91 @@
+<div class="wrapper">
+    <div class="main-content">
+        <div class="col-12 p-0 mt-4">
+            <mat-card class="mat-card-page">
+                <mat-card-header class="mat-card-header-page">
+                    <mat-card-title class="mat-card-title-page">
+                        <mat-icon>search</mat-icon> Asset Movement
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="mat-card-content-page p-2">
+                    <div class="row m-0 p-0">
+                        <mat-form-field appearance="outline" class="col-4">
+                            <mat-label>Device Type</mat-label>
+                            <mat-select>
+                                <mat-option>None</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="col-4">
+                            <mat-label>Device Unique Id</mat-label>
+                            <mat-select>
+                                <mat-option>None</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <button mat-raised-button class="col-2 btn-search">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
+                </mat-card-content>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="asset_floor_plan">
+                            <!-- <div class="asset-finder  status-active pinkBg">
+                                <span class="value">ATD003</span>
+                                <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                                <span class="ripple pinkBg"></span>
+                                <span class="ripple pinkBg"></span>
+                                <span class="ripple pinkBg"></span>
+                            </div> -->
+                            <img src="../../../assets/images/asset-floor-plan.jpg" width="100%" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-event card border">
+                            <div class="card-body border-left">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col">
+                                        <h5 class="m-0">Selected Device Info</h5>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered dataTable" width="100%" cellspacing="0" role="grid"
+                                    aria-describedby="dataTable_info" style="width: 100%;">
+
+                                    <tbody>
+                                        <tr role="row" class="odd">
+                                            <td>Device Type</td>
+                                            <td>Laptop</td>
+                                        </tr>
+
+                                        <tr role="row" class="odd">
+                                            <td>Device Photo</td>
+                                            <td><img src="../../../assets/images/laptop.jpg" width="100px" /></td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td>Device ID</td>
+                                            <td>ATD003</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td>Device Location</td>
+                                            <td>Software Team</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td>User Name</td>
+                                            <td>Surya</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-muted mt-3 mb-0"><a href="#" class="devices-info text-white">Send
+                                        Notification</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <mat-card-footer>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>

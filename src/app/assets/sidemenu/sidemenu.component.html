@@ -1,0 +1,95 @@
+<div class="row p-0 m-0">
+  <div class="p-0 m-0 show-large menu" [ngClass]="iconmenu ? 'smallsidemenu' : 'largesidemenu'">
+
+    <div *ngIf=adminPrivileges>
+
+      <li>
+        <a class="sidemenuitem m-0 p-3" routerLinkActive="sidemenuitem-active" data-toggle="collapse"
+          data-target="#dumperTracking" [routerLinkActiveOptions]="{ exact: true }" title="Dashboard"
+          data-bs-toggle="tooltip" data-bs-placement="right">
+          <mat-icon>dashboard</mat-icon><span class="menutext">Dumper Tracking</span>
+        </a>
+        <ul id="dumperTracking">
+          <a class="sidemenuitem m-0 p-3" routerLink="/assets/dashboard" routerLinkActive="sidemenuitem-active"
+            [routerLinkActiveOptions]="{ exact: true }" title="Dashboard" data-bs-toggle="tooltip"
+            data-bs-placement="right">
+            <mat-icon>dashboard</mat-icon><span class="menutext">Dashboard</span>
+          </a>
+          <a class="sidemenuitem m-0 p-3" routerLink="/assets/dumperdetails" routerLinkActive="sidemenuitem-active"
+            [routerLinkActiveOptions]="{ exact: true }" title="Dumper Details" data-bs-toggle="tooltip"
+            data-bs-placement="right">
+            <mat-icon>data_usage</mat-icon><span class="menutext">Dumper Details</span>
+          </a>
+
+          <a class="sidemenuitem m-0 p-3" routerLink="/assets/tripduration" routerLinkActive="sidemenuitem-active"
+            [routerLinkActiveOptions]="{ exact: true }" title="Duration of the Trip" data-bs-toggle="tooltip"
+            data-bs-placement="right">
+            <mat-icon>access_time</mat-icon><span class="menutext"> Duration of the Trip</span>
+          </a>
+
+          <a class="sidemenuitem m-0 p-3" routerLink="/assets/dumperstatus" routerLinkActive="sidemenuitem-active"
+            [routerLinkActiveOptions]="{ exact: true }" title="Dumper Status" data-bs-toggle="tooltip"
+            data-bs-placement="right">
+            <mat-icon>rotate_left</mat-icon><span class="menutext"> Dumper Status</span>
+          </a>
+        </ul>
+      </li>
+
+
+
+      <!-- <li class="nav-item">
+        <a class="nav-link-head noselect" data-toggle="collapse" data-target="#dumperTracking">
+          <span class="sidenav-menu-item-text">
+            <mat-icon>important_devices</mat-icon> Device Management <i class="fa fa-angle-down"></i>
+          </span>
+        </a>
+        <ul id="dumperTracking" class="pl-0 menu-sub-list list-unstyled collapse">
+          <li class="nav-item noselect">
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/dashboard" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Dashboard" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <mat-icon>dashboard</mat-icon><span class="menutext">Dashboard</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/dumperdetails" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Dumper Details" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <mat-icon>data_usage</mat-icon><span class="menutext">Dumper Details</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/tripduration" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Duration of the Trip" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <mat-icon>access_time</mat-icon><span class="menutext"> Duration of the Trip</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/dumperstatus" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Dumper Status" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <mat-icon>rotate_left</mat-icon><span class="menutext"> Dumper Status</span>
+            </a>
+          </li>
+        </ul>
+      </li> -->
+
+
+
+    </div>
+    <a class="sidemenuitem m-0 p-3" routerLink="/assets/assetsummary" routerLinkActive="sidemenuitem-active"
+      [routerLinkActiveOptions]="{ exact: true }" title="Asset Summary" data-bs-toggle="tooltip"
+      data-bs-placement="right">
+      <mat-icon>list</mat-icon><span class="menutext"> Asset Summary</span>
+    </a>
+    <!-- <button class="btn sidemenuitem m-0 p-2 menucollapse" (click)="shortmenu();">{{menucollapsetext}}</button> -->
+  </div>
+  <div class="col page-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<!-- <div class="col page-content">
+  <router-outlet></router-outlet>
+</div> -->

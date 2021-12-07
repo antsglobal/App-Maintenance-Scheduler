@@ -1,0 +1,72 @@
+<div class="wrapper">
+  <div class="main-content">
+    <div class="col-12 p-0 mt-4">
+      <mat-card class="mat-card-page">
+        <mat-card-header class="mat-card-header-page">
+          <mat-card-title class="mat-card-title-page">
+            <mat-icon>rotate_left</mat-icon> Dumper Status
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mat-card-content-page p-2">
+          <div class="row m-0 p-0">
+            <mat-form-field appearance="outline" class="col-4">
+              <mat-label>Select DumperId</mat-label>
+              <mat-select multiple="false" [(ngModel)]="selectedDumperId">
+                <mat-option *ngFor="let v of dumpers" [value]="v.deviceId">
+                  {{v.deviceMappingID}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button (click)="fetchData = false; getDumperData()" mat-raised-button class="col-2 btn-search">
+              <mat-icon>search</mat-icon>
+            </button>
+          </div>
+          <mat-divider></mat-divider>
+          <div *ngIf="noDataFound;then noDumperDataFound else dumperDataFound">
+          </div>
+          <ng-template #noDumperDataFound>
+            Dumper details not found.
+          </ng-template>
+          <ng-template #dumperDataFound>
+            <div class="col-12 m-4" *ngIf="fetchData">
+              <!-- <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleRadius]="250"
+                [matRippleColor]="orange">
+                Click me
+              </div>
+              <button mat-fab matRipple [matRippleRadius]="250" [matRippleUnbounded]="true" [matRippleCentered]="true"
+                color="accent" class="huge-icon mx-2 status-active rounded">
+                Loading
+              </button> -->
+              <button mat-fab class="huge-icon mx-4 {{dumperStates.loading}}">
+                Loading
+                <span class="pulse"></span>
+              </button>
+              <button mat-fab class="huge-icon mx-4 {{dumperStates.transit}}">
+                Transit
+                <span class="pulse"></span>
+              </button>
+              <button mat-fab class="huge-icon mx-4 {{dumperStates.unloading}}">
+                Unloading
+                <span class="pulse"></span>
+              </button>
+            </div>
+            <mat-divider></mat-divider>
+            <div *ngIf="fetchData" class="col-md-12 map">
+              <hr>
+              <h5><i class="fa fa-map-marker"></i> Track vechile here</h5>
+  
+              <agm-map *ngIf="fetchMapPosition" [latitude]="markers.lat" [longitude]="markers.lng" [zoom]="zoom"
+                [disableDefaultUI]="false" [usePanning]="true" [zoomControl]="false">
+                <agm-marker (markerClick)="clickedMarker()" [latitude]="markers.lat" [longitude]="markers.lng"
+                  [label]="markers.label" [markerDraggable]="markers.draggable" (dragEnd)="markerDragEnd($event)">
+                  <agm-info-window>
+                  </agm-info-window>
+                </agm-marker>
+              </agm-map>
+            </div>
+          </ng-template>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

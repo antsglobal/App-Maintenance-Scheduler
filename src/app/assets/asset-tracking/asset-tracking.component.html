@@ -1,0 +1,62 @@
+<div class="wrapper">
+    <div class="main-content">
+        <div class="col-12 p-0 mt-4">
+            <mat-card class="mat-card-page">
+                <mat-card-header class="mat-card-header-page">
+
+                    <mat-card-title class="mat-card-title-page">
+                        <mat-icon>windows</mat-icon> Asset Tracking
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="mat-card-content-page p-2">
+                    <div class="row m-0 p-0">
+                        <mat-form-field appearance="outline" class="col-4">
+                            <mat-label>Search by Asset Code</mat-label>
+                            <input matInput appearance="outline" (keyup)="applyFilter($event)" [autocomplete]="false"
+                                placeholder="Search by Asset Code" #input />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-table #table [dataSource]="assetData" matSort>
+
+                                <ng-container matColumnDef="asset_Code">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Asset Code </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.asset_Code}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="asset_Description">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Asset Description
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.asset_Description}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="room_Id">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Room ID </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.room_Id}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="room">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Room </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.room}} </mat-cell>
+                                </ng-container>
+
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                                <!-- Row shown when there is no matching data. -->
+                                <mat-row class="mat-row" *matNoDataRow>
+                                    <p class="mat-cell" colspan="4">No data matching the filter.</p>
+                                </mat-row>
+                            </mat-table>
+                            <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"
+                                [showFirstLastButtons]="true">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

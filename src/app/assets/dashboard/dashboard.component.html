@@ -1,0 +1,125 @@
+<div class="wrapper">
+    <div class="main-content">
+        <div class="col-12 p-0 mt-4">
+            <!-- <mat-card class="mat-card-page">
+                <mat-card-header class="col-md-12 col-sm-12"> -->
+            <div class="row m-0 p-0">
+                <div class="col-5 mat-card-title-page p-1" color="primary">
+                    <h1 class="m-0 p-2">Dashboard</h1>
+                </div>
+                <!-- <div class="col-4"> -->
+                <mat-form-field class="col-3" appearance="outline">
+                    <input (change)="setMinDate(true)" matInput type="date" name="fromDate" [(ngModel)]="fromDate">
+                </mat-form-field>
+
+                <mat-form-field class="col-3" appearance="outline">
+                    <input matInput type="date" name="toDate" [(ngModel)]="toDate" [min]="dMinDate">
+                </mat-form-field>
+
+                <button mat-raised-button (click)="getDevicesCount()" class="col-1 btn-search">
+                    <mat-icon>search</mat-icon>
+                </button>
+                <!-- </div> -->
+            </div>
+            <mat-divider></mat-divider>
+            <!-- </mat-card-header>
+                <mat-card-content class="mat-card-content-page p-2"> -->
+            <div class="row pt-3" *ngIf="fetchData">
+                <div class="dashboard-card col-md-4 col-sm-4 mb-3">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Dumper Utilization
+                            </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="p-3">
+                            <div class="my-2">
+                                <span class="fs-25">
+                                    {{ dashboardData.dumperUtilization.active }} / {{
+                                    dashboardData.dumperUtilization.total }}
+                                </span>
+                                <span class="float-right">
+                                    Used {{ dashboardData.dumperUtilization.percentage }} %
+                                </span>
+                            </div>
+                            <mat-progress-bar mode="determinate" [value]="dashboardData.dumperUtilization.percentage"
+                                [bufferValue]="dashboardData.dumperUtilization.total"></mat-progress-bar>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="dashboard-card col-md-4 col-sm-4 mb-3">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Shovel Utilization
+                            </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="p-3">
+                            <div class="my-2">
+                                <span class="fs-25">
+                                    {{ dashboardData.shovelUtilization.active }} / {{
+                                    dashboardData.shovelUtilization.total }}
+                                </span>
+                                <span class="float-right">
+                                    Used {{ dashboardData.shovelUtilization.percentage}} %
+                                </span>
+                            </div>
+                            <mat-progress-bar mode="determinate" [value]="dashboardData.shovelUtilization.percentage"
+                                [bufferValue]="dashboardData.shovelUtilization.total"></mat-progress-bar>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="dashboard-card col-md-4 col-sm-4 mb-3">
+                    <mat-card class="dashboard-card">
+                        <mat-card-header>
+                            <mat-card-title>
+                                Total Dumper Trip Count
+                            </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="p-3 mt-2">
+                            <div class="my-2">
+                                <span class="fs-25">
+                                    {{ dashboardData.totalTripCount.trips }}
+                                </span>
+                                <span class="float-right">
+                                    Completed
+                                </span>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <div class="col-md-8 col-sm-8 mb-3">
+                    <app-recent-trips></app-recent-trips>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <mat-card class="dashboard-card">
+                        <mat-card-header>
+                            <mat-card-title>
+                                Upcoming Trips
+                            </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="p-3">
+                            <div class="my-3">
+                                <span>
+                                    <span class="fs-25">{{ upcomingTrips.trips }}</span> Trips
+                                </span>
+                                <span class="float-right">
+                                    <mat-icon color="primary" class="fs-50">local_shipping</mat-icon>
+                                </span>
+                            </div>
+                            Today Upcoming Trips
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <div class="col-md-12 col-md-12">
+                    <app-trip-analysis [dateRange]="dateRange"></app-trip-analysis>
+                </div>
+            </div>
+            <!-- </mat-card-content>
+            </mat-card> -->
+        </div>
+    </div>
+</div>

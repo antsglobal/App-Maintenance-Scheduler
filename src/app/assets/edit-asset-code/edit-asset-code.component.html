@@ -1,0 +1,48 @@
+<mat-card>
+    <mat-card-header class="mat-card-header-page">
+        <mat-card-title class="mat-card-title-page pt-3">
+            {{pageState}} Asset
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content-page p-1">
+        <form [formGroup]="assetForm" class="popupform" *ngIf="formPrepared">
+            <div class="blockwrap">
+                <div class="row">
+                    <mat-form-field class="col-6" appearance="outline">
+                        <mat-label>Asset Code</mat-label>
+                        <input matInput (change)="removeWhiteSpaces(assetForm.controls.assetCode)"
+                            placeholder="Asset Code" formControlName="assetCode" />
+                        <mat-error *ngIf="assetForm.controls.assetCode.invalid">
+                            Please enter valid Asset Code.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-6" appearance="outline">
+                        <mat-label>Asset Description</mat-label>
+                        <input matInput (change)="removeWhiteSpaces(assetForm.controls.assetDescription)"
+                            placeholder="description" formControlName="assetDescription" />
+                        <mat-error *ngIf="assetForm.controls.assetDescription.invalid">
+                            Please enter valid Description.
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col-4 m-2">
+                        <mat-label>Status</mat-label>
+                        <mat-slide-toggle class="m-2" matInput formControlName="status" name="input_status">
+                        </mat-slide-toggle>
+                        <input matInput autocomplete="off" name="input_status">
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-footer>
+        <div class="col-md-12 float-right popup-footer" *ngIf="formPrepared">
+            <button type="submit" color="primary" (click)="onSubmit(assetForm.value)" mat-raised-button
+                [disabled]="!assetForm.valid" class="col-md-2 btn-theme  popup-footer-btn">
+                <!-- {{pageState}} --> Save
+            </button>
+            <button mat-button (click)="closePopup()" class="btn col-md-2 popup-footer-btn">Cancel</button>
+        </div>
+    </mat-card-footer>
+</mat-card>

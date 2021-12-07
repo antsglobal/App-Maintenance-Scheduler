@@ -1,0 +1,57 @@
+[
+  {
+    "AssetCode": "300833B2DDD9014987451669",
+    "assetDescription": "Laptop",
+    "locationId": "1"
+  },
+  {
+    "AssetCode": "300833B2DDD9014987451670",
+    "assetDescription": "Mobile",
+    "locationId": "1"
+  },
+  {
+    "AssetCode": "300833B2DDD9014987451671",
+    "assetDescription": "Printer",
+    "locationId": "1"
+  },
+  {
+    "AssetCode": "300833B2DDD9014987451672",
+    "assetDescription": "Laptop",
+    "locationId": "1"
+  },
+  {
+    "AssetCode": "300833B2DDD9014987451673",
+    "assetDescription": "Laptop",
+    "locationId": "2"
+  },
+  {
+    "AssetCode": "300833B2DDD9014987451674",
+    "assetDescription": "Printer",
+    "locationId": "2"
+  },
+  {
+    "AssetCode": "300833B2DDD9014987451675",
+    "assetDescription": "Laptop",
+    "locationId": "2"
+  },
+  {
+    "AssetCode": "300833B2DDD9014987451676",
+    "assetDescription": "Mobile",
+    "locationId": "2"
+  },
+  {
+    "AssetCode": "300833B2DDD9014987451677",
+    "assetDescription": "Mobile",
+    "locationId": "1"
+  },
+  {
+    "AssetCode": "300833B2DDD9014987451678",
+    "assetDescription": "Mobile",
+    "locationId": "1"
+  },
+  {
+    "AssetCode": "300833B2DDD9014987451679",
+    "assetDescription": "Printer",
+    "locationId": "2"
+  }
+]

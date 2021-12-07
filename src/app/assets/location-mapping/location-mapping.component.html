@@ -1,0 +1,81 @@
+<div class="wrapper">
+    <div class="main-content">
+        <div class="col-12 p-0 mt-4">
+            <mat-card class="mat-card-page">
+                <mat-card-header class="mat-card-header-page">
+
+                    <mat-card-title class="mat-card-title-page">
+                        <mat-icon>gps_fixed</mat-icon> Location Mapping
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="mat-card-content-page p-2">
+                    <div class="row m-0 p-0">
+                        <div class="col-12">
+                            <button mat-raised-button class="btn-search float-right" (click)="addLocation()">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-table #table [dataSource]="locationDataSource" matSort>
+
+                                <ng-container matColumnDef="rFIDReaderCode">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> RFID Reader Code
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.rFIDReaderCode}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="locationDescription">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Location
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.locationDescription}}
+                                    </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="chAntenna">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> CH Antenna
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.chAntenna}}
+                                    </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="subch">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Sub CH
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.subch}}
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="actions">
+                                    <mat-header-cell *matHeaderCellDef class="px-1 descriptive-info-second"> Actions
+                                    </mat-header-cell>
+                                    <mat-cell class="px-1 descriptive-info-second" *matCellDef="let element">
+                                        <mat-icon matTooltip="edit" cursor="pointer"
+                                            (click)="pageState = 'Edit'; editEmp(element)">edit
+                                        </mat-icon>
+                                        <!-- <mat-icon matTooltip="delete" (click)="pageState = 'Delete'">delete
+                                        </mat-icon> -->
+                                    </mat-cell>
+                                </ng-container>
+
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                                <!-- Row shown when there is no matching data. -->
+                                <mat-row class="mat-row" *matNoDataRow>
+                                    <p class="mat-cell" colspan="4">No data matching the filter.</p>
+                                </mat-row>
+                            </mat-table>
+                            <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+                                [showFirstLastButtons]="true">
+                            </mat-paginator>
+                        </div>
+                    </div>
+
+                </mat-card-content>
+                <mat-card-footer>
+
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>

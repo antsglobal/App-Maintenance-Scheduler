@@ -1,0 +1,180 @@
+<nav class="navbar navbar-light bg-white shadow app-header">
+  <div class="container-fluid">
+    <img src="../../../assets/images/at-logo-hor.png" class="logo-header" />
+    <button mat-icon-button (click)="shortmenu();">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="header-spacer"></div>
+    <app-profile class="show-large"></app-profile>
+    <button mat-raised-button color="primary" class="hide-large navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <app-topmenu class="w-100"></app-topmenu>
+  </div>
+</nav>
+<!-- <app-sidemenu></app-sidemenu> -->
+
+<div class="row p-0 m-0 h-90">
+  <div class="p-0 m-0 show-large menu font-style-screens" [ngClass]="iconmenu ? 'smallsidemenu' : 'largesidemenu'">
+
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item sidemenuitem">
+        <a class="nav-link dropdown-toggle sidemenuitem dropdown m-0 p-3" id="navbarDropdown" role="button"
+          data-bs-toggle="collapse" data-bs-target="#dumpermenu" aria-expanded="false">
+          <mat-icon>local_shipping</mat-icon><span class="menutext"> Dumper Tracking</span>
+        </a>
+        <ul id="dumpermenu" class="menu-sub-list list-unstyled collapse" aria-labelledby="navbarDropdown">
+          <li class="*ngIf=adminPrivileges">
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/dashboard" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Dashboard" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>dashboard</mat-icon><span class="menutext"> Dashboard</span>
+              </div>
+            </a>
+          </li>
+          <li class="*ngIf=adminPrivileges noselect">
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/dumperdetails" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Dumper Details" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>data_usage</mat-icon><span class="menutext"> Dumper Details</span>
+              </div>
+            </a>
+          </li>
+          <li class="*ngIf=adminPrivileges noselect">
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/tripduration" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Duration of the Trip" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>access_time</mat-icon><span class="menutext"> Duration of the Trip</span>
+              </div>
+            </a>
+          </li>
+          <li class="*ngIf=adminPrivileges noselect">
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/dumperstatus" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Dumper Status" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>rotate_left</mat-icon><span class="menutext"> Dumper Status</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item sidemenuitem">
+        <a class="nav-link  dropdown-toggle sidemenuitem m-0 p-3" id="navbarDropdown" role="button"
+          data-bs-toggle="collapse" data-bs-target="#managementmenu" aria-expanded="false">
+          <mat-icon>map</mat-icon><span class="menutext"> Asset Management</span>
+        </a>
+        <ul id="managementmenu" class="menu-sub-list list-unstyled collapse" aria-labelledby="navbarDropdown">
+          <li>
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/assetsummary" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Asset Summary" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>list</mat-icon><span class="menutext"> Asset Summary</span>
+              </div>
+            </a>
+          </li>
+          <li *ngIf=adminPrivileges noselect>
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/assettracking" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Asset Tracking" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>place</mat-icon><span class="menutext"> Asset Tracking</span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/assetregistration"
+              routerLinkActive="sidemenuitem-active" [routerLinkActiveOptions]="{ exact: true }"
+              title="Code Registration" data-bs-toggle="tooltip" data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>library_add</mat-icon><span class="menutext"> Asset Code Registration</span>
+              </div>
+            </a>
+          </li>
+          <li *ngIf=adminPrivileges noselect>
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/locationmapping" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Location Mapping" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>gps_fixed</mat-icon><span class="menutext"> Location Mapping</span>
+              </div>
+            </a>
+
+            <!-- <li *ngIf=adminPrivileges noselect>
+              <a class="sidemenuitem m-0 p-3" routerLink="/assets/pusblish" routerLinkActive="sidemenuitem-active"
+                [routerLinkActiveOptions]="{ exact: true }" title="MQTT Publisher" data-bs-toggle="tooltip"
+                data-bs-placement="right">
+                <div class="px-3">
+                  <mat-icon>dns</mat-icon><span class="menutext">MQTT Publisher</span>
+                </div>
+              </a>
+          </li> -->
+        </ul>
+      </li>
+
+      <li class="nav-item sidemenuitem">
+        <a class="nav-link dropdown-toggle sidemenuitem m-0 p-3" id="navbarDropdown" role="button"
+        data-bs-toggle="collapse" data-bs-target="#maintenanceMenu" aria-expanded="false">
+          <mat-icon>schedule</mat-icon><span class="menutext">Maintenance Schedular</span>
+        </a>
+        <ul id="maintenanceMenu" class="menu-sub-list list-unstyled collapse" aria-labelledby="navbarDropdown">
+          <li>
+            <a class="sidemenuitem m-0 p-3" routerLink="/" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Device Runbook" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>event_note</mat-icon><span class="menutext">Device Runbook</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="sidemenuitem m-0 p-3" routerLink="/" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Maintenance Schedule" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>build</mat-icon><span class="menutext">Maintenance Schedule</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="sidemenuitem m-0 p-3" routerLink="/" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Maintenance Schedule" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>build</mat-icon><span class="menutext"></span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- <li class="nav-item sidemenuitem">
+        <a class="nav-link sidemenuitem m-0 p-3" id="navbarDropdown" role="button" data-bs-toggle="collapse"
+          data-bs-target="#registration" aria-expanded="false">
+          <mat-icon>mode_edit</mat-icon><span class="menutext"> Asset Registration</span>
+        </a>
+        <ul id="registration" class="menu-sub-list list-unstyled collapse" aria-labelledby="navbarDropdown">
+          <li>
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/assetsummary" routerLinkActive="sidemenuitem-active"
+              [routerLinkActiveOptions]="{ exact: true }" title="Asset Summary" data-bs-toggle="tooltip"
+              data-bs-placement="right">
+              <div class="px-3">
+                <mat-icon>list</mat-icon><span class="menutext"> Asset Summary</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </li> -->
+    </ul>
+  </div>
+  <div class="col page-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

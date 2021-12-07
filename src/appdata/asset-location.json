@@ -1,0 +1,22 @@
+[
+  {
+    "locationId": "1",
+    "locationImage": "../../../assets/images/room-1.png"
+  },
+  {
+    "locationId": "2",
+    "locationImage": "../../../assets/images/room-1.png"
+  },
+  {
+    "locationId": "3",
+    "locationImage": "../../../assets/images/room-2.png"
+  },
+  {
+    "locationId": "4",
+    "locationImage": "../../../assets/images/room-4.png"
+  },
+  {
+    "locationId": "5",
+    "locationImage": "../../../assets/images/room-5.png"
+  }
+]
