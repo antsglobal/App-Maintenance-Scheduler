@@ -12,6 +12,7 @@ export interface dumpermodel {
   tripDuration: string,
   loadStartTime: Date,
   unloadEndTime: Date,
+  deviceCatagory?: string
 }
 
 export type DumperStatus = {

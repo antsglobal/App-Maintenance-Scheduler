@@ -14,7 +14,7 @@
     <app-topmenu class="w-100"></app-topmenu>
   </div>
 </nav>
-<!-- <app-sidemenu></app-sidemenu> -->
+<!-- <app-sidemenu [childMenuStyle]="iconmenu ? 'smallsidemenu' : 'largesidemenu'" ></app-sidemenu> -->
 
 <div class="row p-0 m-0 h-90">
   <div class="p-0 m-0 show-large menu font-style-screens" [ngClass]="iconmenu ? 'smallsidemenu' : 'largesidemenu'">
@@ -104,11 +104,11 @@
               [routerLinkActiveOptions]="{ exact: true }" title="Location Mapping" data-bs-toggle="tooltip"
               data-bs-placement="right">
               <div class="px-3">
-                <mat-icon>gps_fixed</mat-icon><span class="menutext"> Location Mapping</span>
+                <mat-icon>gps_fixed</mat-icon><span class="menutext">Location Mapping</span>
               </div>
             </a>
-
-            <!-- <li *ngIf=adminPrivileges noselect>
+          </li>
+          <!-- <li *ngIf=adminPrivileges noselect>
               <a class="sidemenuitem m-0 p-3" routerLink="/assets/pusblish" routerLinkActive="sidemenuitem-active"
                 [routerLinkActiveOptions]="{ exact: true }" title="MQTT Publisher" data-bs-toggle="tooltip"
                 data-bs-placement="right">
@@ -120,22 +120,104 @@
         </ul>
       </li>
 
-      <li class="nav-item sidemenuitem">
+      <!-- <li class="nav-item sidemenuitem">
         <a class="nav-link dropdown-toggle sidemenuitem m-0 p-3" id="navbarDropdown" role="button"
-        data-bs-toggle="collapse" data-bs-target="#maintenanceMenu" aria-expanded="false">
-          <mat-icon>schedule</mat-icon><span class="menutext">Maintenance Schedular</span>
+          data-bs-toggle="collapse" data-bs-target="#maintenanceMenu" aria-expanded="false">
+          <mat-icon>schedule</mat-icon><span class="menutext">Maintenance Schedular test</span>
         </a>
         <ul id="maintenanceMenu" class="menu-sub-list list-unstyled collapse" aria-labelledby="navbarDropdown">
+          <li class="nav-item sidemenuitem">
+            <a class="nav-link dropdown-toggle sidemenuitem m-0 p-3" id="navbarDropdown" role="button"
+              data-bs-toggle="collapse" data-bs-target="#maintenanceMenu1" aria-expanded="false">
+              <mat-icon>schedule</mat-icon><span class="menutext">Test</span>
+            </a>
+            <div id="maintenanceMenu1" class="menu-sub-list list-unstyled collapse" aria-labelledby="navbarDropdown">
+              <li class="*ngIf=adminPrivileges">
+                <a class="sidemenuitem m-0 p-3" routerLink="/assets/driller" routerLinkActive="sidemenuitem-active"
+                  [routerLinkActiveOptions]="{ exact: true }" title="Drilling" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <div class="px-3">
+                    <mat-icon>settings</mat-icon><span class="menutext">Drilling</span>
+                  </div>
+                </a>
+              </li>
+            </div>
+          </li>
+        </ul>
+      </li> -->
+
+      <li class="nav-item sidemenuitem">
+        <a class="nav-link dropdown-toggle sidemenuitem m-0 p-3" id="navbarDropdown" role="button"
+          data-bs-toggle="collapse" data-bs-target="#maintenanceMenu" aria-expanded="false">
+          <mat-icon>schedule</mat-icon><span class="menutext">Maintenance Schedular</span>
+        </a>
+        <ul id="maintenanceMenu" class="menu-sub-list list-unstyled collapse px-3" aria-labelledby="navbarDropdown">
+
           <li>
-            <a class="sidemenuitem m-0 p-3" routerLink="/" routerLinkActive="sidemenuitem-active"
-              [routerLinkActiveOptions]="{ exact: true }" title="Device Runbook" data-bs-toggle="tooltip"
-              data-bs-placement="right">
-              <div class="px-3">
-                <mat-icon>event_note</mat-icon><span class="menutext">Device Runbook</span>
+            <a class="nav-link dropdown-toggle sidemenuitem m-0 p-3" id="navbarDropdown" role="button"
+              data-bs-toggle="collapse" data-bs-target="#utilizationMenu" aria-expanded="false">
+              <mat-icon>build</mat-icon><span class="menutext">Utilization</span>
+            </a>
+            <ul id="utilizationMenu" class="menu-sub-list list-unstyled collapse" aria-labelledby="navbarDropdown">
+              <li class="*ngIf=adminPrivileges">
+                <a class="sidemenuitem m-0 p-3" routerLink="/assets/driller" routerLinkActive="sidemenuitem-active"
+                  [routerLinkActiveOptions]="{ exact: true }" title="Drilling" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <div class="px-3">
+                    <mat-icon>settings</mat-icon><span class="menutext">Driller</span>
+                  </div>
+                </a>
+              </li>
+              <li class="*ngIf=adminPrivileges">
+                <a class="sidemenuitem m-0 p-3" routerLink="/assets/loader" routerLinkActive="sidemenuitem-active"
+                  [routerLinkActiveOptions]="{ exact: true }" title="Loader" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <div class="px-3">
+                    <i class="fa fa-ravelry fa-mat-icon"></i><span class="menutext">Loader</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="*ngIf=adminPrivileges">
+            <a class="sidemenuitem m-0 p-3" routerLink="/assets/iot-device-mapping"
+              routerLinkActive="sidemenuitem-active" [routerLinkActiveOptions]="{ exact: true }"
+              title="IoT Device Mapping" data-bs-toggle="tooltip" data-bs-placement="right">
+              <div>
+                <!-- <i class="fa fa-file-text fa-mat-icon"></i> -->
+                <mat-icon>devices_other</mat-icon>
+                <span class="menutext">IoT Device Mapping</span>
               </div>
             </a>
           </li>
           <li>
+            <a class="nav-link  dropdown-toggle sidemenuitem m-0 p-3" id="navbarDropdown" role="button"
+              data-bs-toggle="collapse" data-bs-target="#inventoryMenu" aria-expanded="false">
+              <i class="fa fa-fw fa-line-chart fa-mat-icon"></i><span class="menutext">Inventory</span>
+            </a>
+
+            <ul id="inventoryMenu" class="menu-sub-list list-unstyled collapse" aria-labelledby="navbarDropdown">
+              <li class="*ngIf=adminPrivileges">
+                <a class="sidemenuitem m-0 p-3" routerLink="/assets/inventory/warehouse"
+                  routerLinkActive="sidemenuitem-active" [routerLinkActiveOptions]="{ exact: true }" title="Warehouse"
+                  data-bs-toggle="tooltip" data-bs-placement="right">
+                  <div class="px-3">
+                    <i class="fa fa-th fa-mat-icon"></i><span class="menutext"> Warehouse</span>
+                  </div>
+                </a>
+              </li>
+              <li class="*ngIf=adminPrivileges">
+                <a class="sidemenuitem m-0 p-3" routerLink="/assets/inventory/department"
+                  routerLinkActive="sidemenuitem-active" [routerLinkActiveOptions]="{ exact: true }" title="Department"
+                  data-bs-toggle="tooltip" data-bs-placement="right">
+                  <div class="px-3">
+                    <i class="fa fa-ravelry fa-mat-icon"></i><span class="menutext"> Department</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- <li>
             <a class="sidemenuitem m-0 p-3" routerLink="/" routerLinkActive="sidemenuitem-active"
               [routerLinkActiveOptions]="{ exact: true }" title="Maintenance Schedule" data-bs-toggle="tooltip"
               data-bs-placement="right">
@@ -152,7 +234,7 @@
                 <mat-icon>build</mat-icon><span class="menutext"></span>
               </div>
             </a>
-          </li>
+          </li> -->
         </ul>
       </li>
       <!-- <li class="nav-item sidemenuitem">
@@ -175,6 +257,12 @@
     </ul>
   </div>
   <div class="col page-content">
-    <router-outlet></router-outlet>
+    <div class="wrapper">
+      <div class="main-content">
+        <div class="col-12 p-0 mt-4">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

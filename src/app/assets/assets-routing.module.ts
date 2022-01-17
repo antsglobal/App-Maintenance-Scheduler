@@ -13,6 +13,10 @@ import { AssetTrackingComponent } from './asset-tracking/asset-tracking.componen
 import { AssetRegistrationComponent } from './asset-registration/asset-registration.component';
 import { LocationMappingComponent } from './location-mapping/location-mapping.component';
 import { MqttPulisherComponent } from './mqtt-pulisher/mqtt-pulisher.component';
+import { DrilingComponent } from './maintenence-schedular/utilization/driling/driling.component';
+import { WarehouseComponent } from './maintenence-schedular/inventory/warehouse/warehouse.component';
+import { DepartmentComponent } from './maintenence-schedular/inventory/department/department.component';
+import { IotDeviceMappingComponent } from './maintenence-schedular/iot-device-mapping/iot-device-mapping.component';
 
 const routes: Routes = [
   {
@@ -68,6 +72,31 @@ const routes: Routes = [
       {
         path: 'locationmapping',
         component: LocationMappingComponent,
+        canActivate: [AuthorizeGuard]
+      },
+      {
+        path: 'driller',
+        component: DrilingComponent,
+        canActivate: [AuthorizeGuard]
+      },
+      {
+        path: 'loader',
+        component: DrilingComponent,
+        canActivate: [AuthorizeGuard]
+      },
+      {
+        path: 'iot-device-mapping',
+        component: IotDeviceMappingComponent,
+        canActivate: [AuthorizeGuard]
+      },
+      {
+        path: 'inventory/warehouse',
+        component: DepartmentComponent,
+        canActivate: [AuthorizeGuard]
+      },
+      {
+        path: 'inventory/department',
+        component: DepartmentComponent,
         canActivate: [AuthorizeGuard]
       },
       // {

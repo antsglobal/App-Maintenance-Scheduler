@@ -25,9 +25,10 @@
               "src/appdata"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles/alphanumero.css",
-              "src/styles/styles.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./src/styles/alphanumero.css",
+              "./src/styles/styles.css",
+              "./node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [ "./node_modules/bootstrap/dist/js/bootstrap.min.js" ]
           },
@@ -91,8 +92,9 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles/alphanumero.css",
-              "src/styles/styles.css"
+              "./src/styles/alphanumero.css",
+              "./src/styles/styles.css",
+              "./node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [ "./node_modules/bootstrap/dist/js/bootstrap.min.js" ]
           }

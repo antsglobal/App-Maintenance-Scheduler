@@ -22,6 +22,8 @@ export class TripDurationComponent implements OnInit {
   errorMessage: string;
   dmp: any;
   todaysDate: any;
+  dMinDate
+
   constructor(private dumperService: DumperService, public datepipe: DatePipe) {
     let today = new Date();
     this.todaysDate = this.datepipe.transform(today, 'yyyy-MM-dd');
@@ -32,8 +34,8 @@ export class TripDurationComponent implements OnInit {
   dumperData = new MatTableDataSource<dumpermodel>(this.dumper);
 
   ngOnInit(): void {
-    this.GetDumperIds();
-    this.GetData(this.fromDate, this.toDate);
+    this.getDeviceIds();
+    this.getData(this.fromDate, this.toDate);
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -41,21 +43,20 @@ export class TripDurationComponent implements OnInit {
     this.dumperData.paginator = this.paginator;
     this.dumperData.sort = this.sort;
   }
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dumperData.filter = filterValue;
   }
 
-  dMinDate
-  
   setMinDate(setToDate = false) {
     this.dMinDate = this.fromDate;
     if (setToDate)
     this.toDate = this.fromDate;
   }
   
-  GetData(fromDate: Date, toDate: Date): void {
+  getData(fromDate: Date, toDate: Date): void {
     const newDumper: dumpermodel = { fromDate, toDate } as dumpermodel;
     this.dumperService.getTripDuration(newDumper).subscribe(
       (dumperRecords) => {
@@ -66,9 +67,11 @@ export class TripDurationComponent implements OnInit {
     )
   }
 
-  GetDumperIds(): void {
-    const newdumper: dumpermodel = {} as dumpermodel;
-    this.dumperService.getDumperIds(newdumper).subscribe({
+  getDeviceIds(): void {
+    const newdumper: dumpermodel = {
+      deviceCatagory: 'Dumper'
+    } as dumpermodel;
+    this.dumperService.getDeviceIds().subscribe({
       next: (dumperids) => {
         this.dmp = dumperids['data'];
         this.getDumpers = this.dmp;
@@ -87,7 +90,7 @@ export class TripDurationComponent implements OnInit {
   }
 
   filterDumpers() {
-    this.GetData(this.fromDate, this.toDate);
+    this.getData(this.fromDate, this.toDate);
   }
 
   filterDumperData(recordFilter: any) {

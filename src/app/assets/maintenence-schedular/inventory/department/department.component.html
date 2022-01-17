@@ -1,0 +1,114 @@
+<mat-card class="mat-card-page">
+    <mat-card-header class="mat-card-header-page">
+        <mat-card-title class="mat-card-title-page">
+            <i class="fa  fa-mat-icon" [ngClass]="isDep ? 'fa-ravelry' : 'fa-th'"></i>
+            {{ pageTitle }}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content-page p-2">
+        <div class="row m-0 p-0">
+            <div class="col-12">
+                <!-- <mat-label class="mx-2 h-3 mat-header-cell">Status</mat-label>
+                    <mat-slide-toggle (change)="onStatusChange()" [(ngModel)]="status"> 
+                        {{ status ? '  Active' : '  Inactive' }}
+                    </mat-slide-toggle> -->
+                <button mat-button class="col-2 btn btn-blue" (click)="pageState = 'View'; inventoryMappingPopup()">
+                    <mat-icon>remove_red_eye</mat-icon> Stock Movement
+                </button>
+                <button *ngIf="!isDep" mat-raised-button class="col-4 btn-search float-right"
+                    (click)="pageState = 'Add'; inventoryMappingPopup()">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <!-- <button mat-button (click)="exporter.exportTable('pdf')">export</button> -->
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <mat-table #table [dataSource]="departmentData" matSort matTableExporter
+                        #exporter="matTableExporter">
+
+                        <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1 descriptive-info-8pc">Id
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-2 descriptive-info-8pc"> {{element.id}}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="departmentName">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> Department Name
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-2"> {{element.departmentName}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="partName">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> Replacement Parts
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-2">
+                                {{element.partName}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="brand">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"
+                                [ngClass]="isDep ? 'descriptive-info-8pc' : ''"> Brand
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-2"
+                                [ngClass]="isDep ? 'descriptive-info-8pc' : ''">
+                                {{element.brand}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="stockAvailable">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> Stock Available
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-2">
+                                {{element.stockAvailable}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="uom">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> UOM
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-2">
+                                {{element.uom}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="warehouseStock">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> Warehouse Stock
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-2">
+                                {{ element.warehouseStock }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="lastRefilDate">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> Last Refill Date
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-2">
+                                {{ element.lastRefilDate }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="refill">
+                            <mat-header-cell *matHeaderCellDef class="px-1"
+                                [ngClass]="isDep ? 'descriptive-info-8pc' : ''"> Refill
+                            </mat-header-cell>
+                            <mat-cell class="px-2" [ngClass]="isDep ? 'descriptive-info-8pc' : ''"
+                                *matCellDef="let element">
+                                <mat-icon matTooltip="Refill" cursor="pointer"
+                                    (click)="pageState = 'Refill'; inventoryMappingPopup(element)">
+                                    format_color_fill
+                                </mat-icon>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <!-- <mat-paginator #paginator [pageSize]="pageSize" [length]="totalLength" [pageIndex]="pageIndex"
+                        [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="false" (page)="getPaginationData($event)">
+                    </mat-paginator> -->
+
+                    <mat-paginator #paginator [length]="totalLength" [pageSize]="size" [pageSizeOptions]="pageSizeOptions"
+                        (page)="getPaginationData($event)">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

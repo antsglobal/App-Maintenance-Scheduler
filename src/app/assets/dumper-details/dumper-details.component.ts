@@ -66,8 +66,7 @@ export class DumperDetailsComponent implements OnInit {
   }
 
   GetDumperIds(): void {
-    const newdumper: dumpermodel = {} as dumpermodel;
-    this.dumperService.getDumperIds(newdumper).subscribe({
+    this.dumperService.getDeviceIds().subscribe({
       next: (dumperids) => {
         this.dmp = dumperids['data'];
         this.getDumpers = this.dmp;

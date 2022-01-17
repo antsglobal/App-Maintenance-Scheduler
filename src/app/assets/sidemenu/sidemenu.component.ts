@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { GlobalConstants } from '../../variables/globalvariables';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { MenuService } from 'src/app/services/menu.service';
 
 
 @Component({
@@ -12,15 +13,36 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class SidemenuComponent implements OnInit {
   errorMessage: any;
-  constructor() { }
   menucollapsetext: string = '<';
-  iconmenu: boolean = false;
+  iconMenu: boolean = true;
   adminPrivileges: boolean = false;
+
+  panelOpenState = false;
+
+  menuServiceSub: Subscription
+  menuItems
+  
+  @Input() childMenuStyle: string;
+
+  constructor(
+    private menuService: MenuService
+  ) { 
+    console.log('childMenuStyle: ', this.childMenuStyle)
+  }
 
   ngOnInit(): void {
     if (sessionStorage.getItem("loggedInemployeeName") == "Admin") {
       this.adminPrivileges = true;
     }
+
+    this.getAvailableMenuItems();
+  }
+
+  getAvailableMenuItems() {
+    this.menuServiceSub = this.menuService.getAccessibleMenuItems().subscribe(data => {
+      this.menuItems = data;
+      console.log(data);
+    })
   }
 
   shortmenu(): void {
@@ -30,6 +52,12 @@ export class SidemenuComponent implements OnInit {
     else {
       this.menucollapsetext = '>';
     }
-    this.iconmenu = !this.iconmenu;
+    this.iconMenu = !this.iconMenu;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.shortmenu()
+    console.log('childMenuStyle: ', this.childMenuStyle)
+    // changes.prop contains the old and the new value...
   }
 }

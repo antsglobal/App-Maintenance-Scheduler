@@ -5,3 +5,7 @@
     .search {
         color: rgba(0,0,0,.87);        
     }
+
+    .mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+        color: var(--color-white) !important;
+    }

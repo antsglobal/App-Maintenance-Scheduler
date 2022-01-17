@@ -1,0 +1,22 @@
+.mat-header-actions,
+.close-popup {
+    position: absolute !important;
+    right: 1% !important;
+    top: 1%;
+}
+
+.descriptive-info-8pc {
+    min-width: 6% !important;
+    max-width: 8% !important;
+}
+
+
+.descriptive-info-15pc {
+    min-width: 15% !important;
+    max-width: 20% !important;
+}
+
+.mat-header-actions span {
+    margin: 0 5%;
+    cursor: pointer;
+}

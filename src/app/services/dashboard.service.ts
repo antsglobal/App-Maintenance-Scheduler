@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -6,6 +6,7 @@ import { ServiceConstants } from '../constants/ServiceConstants';
 import { DashboardDataAdapter, DevicesCountAdapter, RecentTripDataAdapter } from '../models/dashboardmodel';
 import { map } from 'rxjs/operators';
 import { DashboardDate } from '../models/dashboarddatamodel ';
+import { EnvironmentConfig, ENV_CONFIG } from 'src/environments/environment-config.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class DashboardService {
   private dashboardWidgetsApiUrl = ServiceConstants.baseurlv1 + '/dashboard';
   private recentTripsApiUrl = ServiceConstants.baseurlv1 + '/recenttrips';
   private devicesCountApiUrl = ServiceConstants.baseurlv1 + '/countofshovelsdumpers';
+  apiBaseUrl
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,12 +25,16 @@ export class DashboardService {
     }),
   };
 
-  constructor(private http: HttpClient, private _dDAapter: DashboardDataAdapter, private _rtAdapater: RecentTripDataAdapter,
+  constructor(private http: HttpClient, 
+    @Inject(ENV_CONFIG) private config: EnvironmentConfig,
+    private _dDAapter: DashboardDataAdapter, private _rtAdapater: RecentTripDataAdapter,
     private _dcAdapter: DevicesCountAdapter
-    ) { }
+    ) {
+      this.apiBaseUrl = `${config.environment.apiUrl}`;
+    }
 
   getDashboardWidgetsData(data: DashboardDate): Observable<any> {
-    return this.http.post(this.dashboardWidgetsApiUrl, data).pipe(
+    return this.http.post(this.apiBaseUrl + this.dashboardWidgetsApiUrl, data).pipe(
       map((response: any) => {
         return response['data'].map(item => {
           return this._dDAapter.adapt(item)
@@ -38,7 +44,7 @@ export class DashboardService {
   }
 
   getRecentTrips(): Observable<any> {
-    return this.http.get(this.recentTripsApiUrl).pipe(
+    return this.http.get(this.apiBaseUrl + this.recentTripsApiUrl).pipe(
       map((response: any) => {
         return response.map(item => {
           return this._rtAdapater.adapt(item)
@@ -48,7 +54,7 @@ export class DashboardService {
   }
 
   getDevicesCount(): Observable<any> {
-    return this.http.get(this.devicesCountApiUrl).pipe(
+    return this.http.get(this.apiBaseUrl + this.devicesCountApiUrl).pipe(
       map((response: any) => {
         return response.map(item => {
           return this._dcAdapter.adapt(item)

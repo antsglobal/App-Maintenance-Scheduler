@@ -1,7 +1,9 @@
 export enum ServiceConstants {
-  baseurl = 'http://assettracking.alpha-numero.com:8899/sccl/api/v1/auth',
-  baseurlv1 = 'http://assettracking.alpha-numero.com:8899/sccl/api/v1',
-  baseurlv2 = 'http://assettracking.alpha-numero.com:8899/sccl/api/v2',
+  base = 'sccl/',
+  baseurl = 'sccl/api/v1/auth',
+  baseurlv1 = 'sccl/api/v1',
+  baseurlv2 = 'sccl/api/v2',
+  baseurlt1 = 'sccl/swagger-ui.html#/can',
   periodSelected = 'hit1',
   empId='',
 }

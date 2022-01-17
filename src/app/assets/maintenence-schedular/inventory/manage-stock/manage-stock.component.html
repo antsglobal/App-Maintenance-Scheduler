@@ -1,0 +1,80 @@
+<mat-card>
+    <mat-card-header class="mat-card-header-page">
+        <mat-card-title class="mat-card-title-page pt-3">
+            {{pageState}} Stock
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content-page p-1">
+        <form [formGroup]="addStockForm" class="popupform" *ngIf="formPrepared">
+            <div class="blockwrap">
+                <div class="row">                    
+                    <mat-form-field appearance="outline" class="col-6">
+                        <mat-label>Replacement Part</mat-label>
+                        <mat-select formControlName="partName" required placeholder="Replacement Part">
+                            <mat-option *ngFor="let v of parts" [value]="v.name">
+                                {{v.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addStockForm.controls.partName.invalid">
+                            Please select New Stock.
+                        </mat-error>
+                    </mat-form-field>
+
+                    
+                    <mat-form-field class="col-6" appearance="outline">
+                        <mat-label>Add Stock</mat-label>
+                        <input matInput (change)="removeWhiteSpaces(addStockForm.controls.addNewStock)"
+                            placeholder="Replacement Part" formControlName="addNewStock" />
+                        <mat-error *ngIf="addStockForm.controls.addNewStock.invalid">
+                            Please enter valid New Stock.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col-6">
+                        <mat-label>UOM</mat-label>
+                        <mat-select formControlName="uom" required placeholder="Chosse Model Name">
+                            <mat-option *ngFor="let v of uoms" [value]="v.name">
+                                {{v.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addStockForm.controls.uom.invalid">
+                            Please select a UOM.
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col-6">
+                        <mat-label>Select brand</mat-label>
+                        <mat-select formControlName="brand" required placeholder="Chosse Device Type">
+                            <mat-option *ngFor="let v of brands" [value]="v.name">
+                                {{v.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addStockForm.controls.brand.invalid">
+                            Please select a brand.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row" *ngIf="pageState != 'Add'">
+                    <mat-form-field appearance="outline" class="col-4 m-2">
+                        <mat-label>Status</mat-label>
+                        <mat-slide-toggle class="m-2" matInput formControlName="status" name="input_status">
+                        </mat-slide-toggle>
+                        <input matInput autocomplete="off" name="input_status">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-footer>
+        <div class="col-md-12 float-right popup-footer" *ngIf="formPrepared">
+            <button type="submit" color="primary" (click)="onSubmit(addStockForm.value)" mat-raised-button
+                [disabled]="!addStockForm.valid" class="col-md-2 btn-theme  popup-footer-btn">
+                <!-- {{ pageState }} -->
+                Save
+            </button>
+            <button mat-button (click)="closePopup()" class="btn col-md-2 popup-footer-btn">Cancel</button>
+        </div>
+    </mat-card-footer>
+</mat-card>

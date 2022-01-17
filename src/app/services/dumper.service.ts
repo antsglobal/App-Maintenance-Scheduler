@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { dumpermodel, DumperStatus } from '../models/dumpermodel';
 import { ServiceConstants } from '../constants/ServiceConstants';
+import { EnvironmentConfig, ENV_CONFIG } from 'src/environments/environment-config.interface';
+import { DeviceConstants } from '../constants/DeviceConstants';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +16,10 @@ export class DumperService {
 
   private dumperDetailsUrl = '/dumperdetailscount';
   private tripDurationUrl = '/durationofthetrip';
-  private dumperIdsUrl = '/alldumperids';
+  private dumperIdsUrl = '/device-view';
   private dumperStatusUrl = '/dumperLiveLocation';
   private tripDetailsUrl = '';
+  apiBaseUrl
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -25,35 +28,44 @@ export class DumperService {
     }),
   };
 
-  constructor(private http: HttpClient) { }
+ constructor(
+    private http: HttpClient,
+    @Inject(ENV_CONFIG) private config: EnvironmentConfig
+    ) { 
+      this.apiBaseUrl = `${config.environment.apiUrl}`;
+    }
 
   public getDumperDetails(dumperModel: dumpermodel): Observable<dumpermodel[]> {
     return this.http.post<dumpermodel[]>(
-      ServiceConstants.baseurlv1 + this.dumperDetailsUrl,
+      this.apiBaseUrl + ServiceConstants.baseurlv1 + this.dumperDetailsUrl,
       dumperModel, this.httpOptions
     );
   }
 
   public getTripDuration(dumperModel: dumpermodel): Observable<dumpermodel[]> {
     return this.http.post<dumpermodel[]>(
-      ServiceConstants.baseurlv1 + this.tripDurationUrl,
+      this.apiBaseUrl + ServiceConstants.baseurlv1 + this.tripDurationUrl,
       dumperModel, this.httpOptions
     );
   }
 
-  getDumperIds(dumper: dumpermodel
-  ): Observable<dumpermodel[]> {
-    return this.http.get<dumpermodel[]>(
-      ServiceConstants.baseurlv1 + this.dumperIdsUrl
+  getDeviceIds(category: string = DeviceConstants.dumper): Observable<dumpermodel[]> {
+    return this.http.post<dumpermodel[]>(
+      this.apiBaseUrl + ServiceConstants.baseurlv1 + this.dumperIdsUrl + `?deviceCatagory=${category}`, {}
     );
   }
 
+  // To get the devices
+  getDevices(dumper: dumpermodel): Observable<dumpermodel[]> {
+    return this.http.post<dumpermodel[]>(this.apiBaseUrl + ServiceConstants.baseurlv1 + this.dumperStatusUrl, dumper);
+  }
+
   getDumperStatus(dumperId): Observable<DumperStatus[]> {
-    return this.http.post<DumperStatus[]>(ServiceConstants.baseurlv1 + this.dumperStatusUrl, dumperId);
+    return this.http.post<DumperStatus[]>(this.apiBaseUrl + ServiceConstants.baseurlv1 + this.dumperStatusUrl, dumperId);
   }
 
   getTripDetails(): Observable<dumpermodel[]> {
-    return this.http.get<dumpermodel[]>(ServiceConstants.baseurlv1 + this.tripDetailsUrl);
+    return this.http.get<dumpermodel[]>(this.apiBaseUrl + ServiceConstants.baseurlv1 + this.tripDetailsUrl);
   }
 
 }

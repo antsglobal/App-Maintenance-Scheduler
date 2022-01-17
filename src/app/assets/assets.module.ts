@@ -41,9 +41,23 @@ import { EditLocationComponent } from './location-mapping/edit-location/edit-loc
 import { PopupMessageComponent } from './popup-message/popup-message.component';
 import { ConfirmationDialogService } from '../services/confirmation-dialog.service';
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MqttPulisherComponent } from './mqtt-pulisher/mqtt-pulisher.component';
 import { MqttModule, MQTT_SERVICE_OPTIONS } from 'ngx-mqtt';
 import { MqttServiceService } from '../services/mqtt-service.service';
+import { CihldMenuComponent } from './sidemenu/cihld-menu/cihld-menu.component';
+import { LoadmoreDatabase, SideMenuItemsComponent } from './side-menu-items/side-menu-items.component';
+import { MatTreeModule } from '@angular/material/tree';
+import { DrilingComponent } from './maintenence-schedular/utilization/driling/driling.component';
+import { WarehouseComponent } from './maintenence-schedular/inventory/warehouse/warehouse.component';
+import { DepartmentComponent } from './maintenence-schedular/inventory/department/department.component';
+import { IotDeviceMappingComponent } from './maintenence-schedular/iot-device-mapping/iot-device-mapping.component';
+import { ReplacementStatusComponent } from './maintenence-schedular/utilization/common/replacement-status/replacement-status.component';
+import { IotDeviceComponent } from './maintenence-schedular/iot-device-mapping/iot-device/iot-device.component';
+import { StockMovementComponent } from './maintenence-schedular/inventory/stock-movement/stock-movement.component';
+import { RefillStockComponent } from './maintenence-schedular/inventory/refill-stock/refill-stock.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { ManageStockComponent } from './maintenence-schedular/inventory/manage-stock/manage-stock.component';
 // import { MqttSubscriberComponent } from './mqtt-subscriber/mqtt-subscriber.component';
 // import { IMqttServiceOptions, MqttModule } from "ngx-mqtt";
 // import { environment as env } from '../../environments/environment';
@@ -63,7 +77,18 @@ import { MqttServiceService } from '../services/mqtt-service.service';
     AssetSummaryComponent, DashboardComponent, RecentTripsComponent, TripAnalysisComponent, TripDetailsComponent, 
     AssetTrackingComponent, AssetRegistrationComponent, LocationMappingComponent, AddAssetCodeComponent, EditAssetCodeComponent, 
     CreateLocationComponent, EditLocationComponent, PopupMessageComponent,
-     MqttPulisherComponent, 
+     MqttPulisherComponent,
+     CihldMenuComponent,
+     SideMenuItemsComponent,
+     DrilingComponent,
+     WarehouseComponent,
+     DepartmentComponent,
+     IotDeviceMappingComponent,
+     ReplacementStatusComponent,
+     IotDeviceComponent,
+     StockMovementComponent,
+     RefillStockComponent,
+     ManageStockComponent,
     // MqttSubscriberComponent
     ],
   imports: [
@@ -81,6 +106,9 @@ import { MqttServiceService } from '../services/mqtt-service.service';
     NgApexchartsModule,
     ChartsModule,
     MatCardModule,
+    MatExpansionModule,
+    MatTreeModule,
+    MatTableExporterModule,
     MqttModule.forRoot(MQTT_SERVICE_OPTIONS),
   ],
   providers: [
@@ -94,7 +122,8 @@ import { MqttServiceService } from '../services/mqtt-service.service';
     DevicesCountAdapter,
     RecentTripDataAdapter,
     ConfirmationDialogService,
-    MqttServiceService
+    MqttServiceService,
+    LoadmoreDatabase
   ]
 })
 export class AssetsModule { }

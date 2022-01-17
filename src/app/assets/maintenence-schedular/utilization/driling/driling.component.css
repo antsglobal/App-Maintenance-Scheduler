@@ -1,0 +1,54 @@
+.descriptive-info-second {
+  min-width: 100px !important;
+  max-width: 100px !important;
+}
+
+.descriptive-info-150 {
+  min-width: 10% !important;
+  max-width: 13% !important;
+}
+
+.descriptive-info-third {
+  min-width: 130px !important;
+  max-width: 130px !important;
+}
+
+/* /deep/ .mat-select {
+  background-color: GREEN;
+} */
+
+
+.mat-option.mat-active {
+  /* background: pink !important; */
+  font-weight: bold;
+  font-style: italic;
+}
+
+.status-RED.mat-option:hover {
+  background: RED !important;
+  color: black !important;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.status-ORANGE.mat-option:hover {
+  background: ORANGE !important;
+  color: black !important;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.status-GREEN.mat-option:hover {
+  background: GREEN !important;
+  color: black !important;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.mat-row {
+  cursor: pointer;
+}
+
+.mat-row:hover {
+  opacity: 0.5;
+}

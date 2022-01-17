@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { ServiceConstants } from '../constants/ServiceConstants';
 import { map } from 'rxjs/operators';
 import { assetmodel } from '../models/Assets';
 import { LocationMapping } from '../models/LocationMappingModel';
+import { EnvironmentConfig, ENV_CONFIG } from 'src/environments/environment-config.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class AssettRackingService {
   private locationMappingAddingListAPIUrl = ServiceConstants.baseurlv1 + '/assetlocationsadding';
   private addAssetsAPIUrl = ServiceConstants.baseurlv1 + '/assetadding';
 
+  private testApiBaseUrl = ServiceConstants.baseurlt1;
+  apiBaseUrl: string
+
+
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
@@ -31,11 +36,16 @@ export class AssettRackingService {
     }),
   };
 
-  constructor(private http: HttpClient, private assetAdapter: AssetTrackingAdapter, private assetCountAdapter: AssetLocationAdapter) { }
+  constructor(private http: HttpClient, 
+    @Inject(ENV_CONFIG) private config: EnvironmentConfig,
+    private assetAdapter: AssetTrackingAdapter,
+    private assetCountAdapter: AssetLocationAdapter) { 
+      this.apiBaseUrl = `${config.environment.apiUrl}`;
+    }
 
   getAssetDetails(): Observable<any> {
     this.assetTrackingApiUrl = this.assetDetails;
-    return this.http.get(this.assetTrackingApiUrl).pipe(
+    return this.http.get(this.apiBaseUrl + this.assetTrackingApiUrl).pipe(
       map((response: any) => {
         return response.map(item => {
           return this.assetAdapter.adapt(item)
@@ -44,15 +54,13 @@ export class AssettRackingService {
   }
 
   public getAssetMasters(assetmodel: assetmodel): Observable<assetmodel[]> {
-
-
     return this.http.get<assetmodel[]>(
-      ServiceConstants.baseurlv1 + this.getAssetsApiUrl);
+      this.apiBaseUrl + ServiceConstants.baseurlv1 + this.getAssetsApiUrl);
   }
 
 
   getlocationAssetDetails(id = 0): Observable<any> {
-    this.assetTrackingApiUrl = ServiceConstants.baseurlv1 + '/getassets';;
+    this.assetTrackingApiUrl = this.apiBaseUrl + ServiceConstants.baseurlv1 + '/getassets';;
     return this.http.post(this.assetTrackingApiUrl, { locationId: id }).pipe(
       map((response: any) => {
         return response.map(item => {
@@ -62,7 +70,7 @@ export class AssettRackingService {
   }
 
   getAssetCountByLocation(): Observable<any> {
-    return this.http.get(this.assetCountByLocationApiUrl).pipe(
+    return this.http.get(this.apiBaseUrl + this.assetCountByLocationApiUrl).pipe(
       map((response: any) => {
         return response.map(item => {
           return this.assetCountAdapter.adapt(item)
@@ -72,12 +80,12 @@ export class AssettRackingService {
   }
 
   getAssetLocations(): Observable<any> {
-    return this.http.get(this.assetLocationsApiUrl)
+    return this.http.get(this.apiBaseUrl + this.assetLocationsApiUrl)
   }
 
   // To get the details of the assets with the recent location.
   getAssetTrackingDetails(): Observable<any> {
-    return this.http.get(this.assetTrackingDetailsApiUrl)
+    return this.http.get(this.apiBaseUrl + this.assetTrackingDetailsApiUrl)
   }
 
   getLocationsImages(): Observable<any> {
@@ -85,22 +93,20 @@ export class AssettRackingService {
     return this.http.get(assetImagesUrl)
   }
 
-
-
   getLocationMappingList(): Observable<any> {
-    return this.http.get(this.locationMappingListAPIUrl)
+    return this.http.get(this.apiBaseUrl + this.locationMappingListAPIUrl)
   }
 
   addLocationMapping(data: LocationMapping): Observable<any> {
-    return this.http.post(this.locationMappingAddingListAPIUrl, data)
+    return this.http.post(this.apiBaseUrl + this.locationMappingAddingListAPIUrl, data)
   }
 
   addAssets(data: assetmodel): Observable<any> {
-    return this.http.post(this.addAssetsAPIUrl, data)
+    return this.http.post(this.apiBaseUrl + this.addAssetsAPIUrl, data)
   }
 
   deleteAssets(data: assetmodel): Observable<any> {
     data['status'] = "0";
-    return this.http.post(this.addAssetsAPIUrl, data)
+    return this.http.post(this.apiBaseUrl + this.addAssetsAPIUrl, data)
   }
 }

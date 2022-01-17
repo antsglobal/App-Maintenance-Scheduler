@@ -2,3 +2,12 @@
     height: 90vh;  
     overflow-y: scroll;
 }
+
+.fa-mat-icon {
+    height: 27px !important;
+    width: 27px !important;
+}
+
+.smallsidemenu .menutext {
+    display: none;
+}

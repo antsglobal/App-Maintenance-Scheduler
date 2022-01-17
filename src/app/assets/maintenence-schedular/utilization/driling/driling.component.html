@@ -1,0 +1,95 @@
+<mat-card class="mat-card-page">
+    <mat-card-header class="mat-card-header-page">
+        <mat-card-title class="mat-card-title-page">
+            <mat-icon>settings</mat-icon> {{ pageTitle }}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content-page p-2">
+        <div class="row m-0 p-0">
+
+            <mat-form-field appearance="outline" class="col-4">
+                <mat-label>Choose Machine</mat-label>
+                <mat-select (selectionChange)="onStatusChange()" [(ngModel)]="deviceName">
+                    <mat-option *ngFor="let v of devicesList" [value]="v.deviceMappingID">
+                        {{v.deviceMappingID}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-4">
+                <mat-label>Run Time Status</mat-label>
+                <mat-select (selectionChange)="onStatusChange()"
+                    [ngClass]="run_HoursStatus ? 'status-' + run_HoursStatus : ''" [(ngModel)]="run_HoursStatus">
+                    <mat-option *ngFor="let v of getStatus" class="status-{{v.hoursStatus}}" [value]="v.hoursStatus">
+                        <i class="px-2 fa" [ngClass]="v.hoursStatus == 'RED' ? 'fa-times' : 
+                            (v.hoursStatus == 'ORANGE' ? 'fa-exclamation-triangle' : 
+                            (v.hoursStatus == 'GREEN' ? 'fa-check' : 'fa-circle') )">
+                        </i>
+                        {{v.title}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- <button mat-raised-button (click)="onStatusChange()" class="col-2 btn-search">
+                <mat-icon>search</mat-icon>
+            </button> -->
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <mat-table #table [dataSource]="drillerData" matSort>
+
+                    <ng-container matColumnDef="PId">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1 descriptive-info-second"> SL. No.
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element;let i = index;" class="px-1 descriptive-info-second"> {{ i + 1 }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="deviceName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1 descriptive-info-150"> Machine
+                            Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"  class="px-1 descriptive-info-150"> {{element.deviceName}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="partName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class='px-1'> Replacement Parts </mat-header-cell>
+                        <mat-cell *matCellDef="let element"  class='px-1'> {{element.partName}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="runHours">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1 descriptive-info-150"> Run Time
+                            (in hrs) </mat-header-cell>
+                        <mat-cell *matCellDef="let element"  class="px-1 descriptive-info-150 status-{{ element.hoursStatus }}">
+                            <i class="px-2 fa" [ngClass]="element.hoursStatus == 'RED' ? 'fa-times' : 
+                                (element.hoursStatus == 'ORANGE' ? 'fa-exclamation-triangle' : 'fa-check' )">
+                            </i>
+                            {{element.runHours }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="maxHours">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class='px-1'> Replacement Interval (in hrs)
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class='px-1'> {{element.maxHours}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="lastReplacementDate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-heade class='px-1'r> Last Replacement Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class='px-1'> {{element.lastReplacementDate}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row (click)="openDialog(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                </mat-table>
+                <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+                </mat-paginator>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-footer>
+
+    </mat-card-footer>
+</mat-card>

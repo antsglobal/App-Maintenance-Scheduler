@@ -1,0 +1,88 @@
+<mat-card>
+    <mat-card-header class="mat-card-header-page popup-title">
+        <mat-card-title class="mat-card-title mat-card-title-page pt-3">
+            {{ popupTitle }}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content-page p-1">
+        <div class="col-lg-12">
+            <table class="table table-bordered dataTable" width="100%" cellspacing="0" role="grid"
+                aria-describedby="dataTable_info" style="width: 100%;">
+                <tbody>
+                    <tr role="row" class="odd">
+                        <td class="sorting_1 p-2"><b>Stock Availability</b></td>
+                        <td class="p-2">{{ driller.stockAvailable }}</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td class="sorting_1 p-2"><b>units</b></td>
+                        <td class="p-2"> {{ driller.units }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <div class="oil_status" [ngClass]="driller.hoursStatus == 'RED' ? 'danger' : 
+            (driller.hoursStatus == 'ORANGE' ? 'warning' : 
+            (driller.hoursStatus == 'GREEN' ? 'success' : '') )">
+            <table class="table table-bordered dataTable" width="100%" cellspacing="0" role="grid"
+                aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                    <tr role="row">
+                        <th class="sorting p-2" tabindex="3" aria-controls="dataTable" rowspan="1" colspan="1">
+                            Run Time (in hrs)</th>
+                        <th class="sorting p-2" tabindex="3" aria-controls="dataTable" rowspan="1" colspan="1">
+                            Replacement Interval (in hrs)</th>
+                        <th class="sorting p-2" tabindex="3" aria-controls="dataTable" rowspan="1" colspan="1">
+                            Remaining Hours</th>
+                    </tr>
+                </thead>
+                <tbody class="detail_link">
+                    <tr role="row" class="odd">
+                        <td class="status-{{driller.hoursStatus}} p-2">
+                            <i class="px-2 fa" [ngClass]="driller.hoursStatus == 'RED' ? 'fa-times' : 
+                                (driller.hoursStatus == 'ORANGE' ? 'fa-exclamation-triangle' : 
+                                (driller.hoursStatus == 'GREEN' ? 'fa-check' : 'fa-circle') )">
+                            </i>
+                            {{ driller.runHours }}
+                        </td>
+                        <td class="p-2">{{ driller.maxHours }}</td>
+                        <td class="p-2">{{ reaminingHours }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="notif">
+                        <p class="mb-0">Next replacement after {{ reaminingHours }} hours</p> <img
+                            src="{{getAssetImage()}}">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <input class="oil_value" maxlength="4"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(4, this.maxLength);"
+                        placeholder="Enter No of Litters Oil" type="number" [disabled]="driller.hoursStatus != 'RED'"
+                        [(ngModel)]="driller.quantityToBeReplaced">
+                </div>
+                <!-- <div class="col-lg-12">
+                        
+                    </div> -->
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-footer>
+        <div class="col-md-12 float-right popup-footer">
+            <!-- <button type="submit" color="primary" (click)="onSubmit(assetMappingForm.value)" mat-raised-button
+                [disabled]="!assetMappingForm.valid" class="col-md-2 btn-theme  popup-footer-btn">
+                {{pageState}}
+            </button> -->
+            <!-- <span (click)="closePopup()" class="close-popup-btn float-right">X</span> -->
+            <button type="submit" (click)="onSubmit()"
+                [disabled]="driller.hoursStatus != 'RED' || !driller.quantityToBeReplaced"
+                class="btn col-md-2 popup-footer-btn btn-{{getButtonAttributes()}}">Replace Now</button>
+            <button mat-button (click)="closePopup()" class="btn col-md-2 popup-footer-btn">Cancel</button>
+        </div>
+    </mat-card-footer>
+</mat-card>

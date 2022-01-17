@@ -25,3 +25,9 @@ export type ChartOptions = {
     stroke: ApexStroke;
     grid: ApexGrid;
 };
+
+export type PaginationModel = {
+  "pageNumber": number,
+  "pageSize": number,
+  "query": string
+}

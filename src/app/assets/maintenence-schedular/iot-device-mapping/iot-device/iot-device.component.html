@@ -1,0 +1,78 @@
+<mat-card>
+    <mat-card-header class="mat-card-header-page">
+        <mat-card-title class="mat-card-title-page pt-3">
+            {{pageState}} IoT Device Mapping
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content-page p-1">
+        <form [formGroup]="deviceMappingForm" class="popupform" *ngIf="formPrepared">
+            <div class="blockwrap">
+                <div class="row">
+                    <mat-form-field class="col-6" appearance="outline">
+                        <mat-label>Device Sensor ID</mat-label>
+                        <input matInput (change)="removeWhiteSpaces(deviceMappingForm.controls.deviceSensorId)"
+                            placeholder="Enter Device Sensor ID" formControlName="deviceSensorId" />
+                        <mat-error *ngIf="deviceMappingForm.controls.deviceSensorId.invalid">
+                            Please enter valid device sensor id.
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col-6">
+                        <mat-label>Device Name</mat-label>
+                        <mat-select formControlName="deviceName" required placeholder="Chosse Device Name">
+                            <mat-option *ngFor="let v of devices" [value]="v.deviceId">
+                                {{v.deviceName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="deviceMappingForm.controls.deviceName.invalid">
+                            Please select a device.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col-6">
+                        <mat-label>Model Name</mat-label>
+                        <mat-select formControlName="modelName" required placeholder="Chosse Model Name">
+                            <mat-option *ngFor="let v of deviceNames" [value]="v.deviceId">
+                                {{v.deviceName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="deviceMappingForm.controls.modelName.invalid">
+                            Please select a model.
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col-6">
+                        <mat-label>Device Types</mat-label>
+                        <mat-select formControlName="deviceType" required placeholder="Chosse Device Type">
+                            <mat-option *ngFor="let v of deviceTypes" [value]="v.deviceId">
+                                {{v.deviceName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="deviceMappingForm.controls.deviceType.invalid">
+                            Please select a device type.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row" *ngIf="pageState != 'Create'">
+                    <mat-form-field appearance="outline" class="col-4 m-2">
+                        <mat-label>Status</mat-label>
+                        <mat-slide-toggle class="m-2" matInput formControlName="status" name="input_status">
+                        </mat-slide-toggle>
+                        <input matInput autocomplete="off" name="input_status">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-footer>
+        <div class="col-md-12 float-right popup-footer" *ngIf="formPrepared">
+            <button type="submit" color="primary" (click)="onSubmit(deviceMappingForm.value)" mat-raised-button
+                [disabled]="!deviceMappingForm.valid" class="col-md-2 btn-theme  popup-footer-btn">
+                <!-- {{ pageState }} -->
+                Save
+            </button>
+            <button mat-button (click)="closePopup()" class="btn col-md-2 popup-footer-btn">Cancel</button>
+        </div>
+    </mat-card-footer>
+</mat-card>

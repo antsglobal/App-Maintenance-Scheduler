@@ -1,0 +1,14 @@
+.descriptive-info-8pc {
+  min-width: 6% !important;
+  max-width: 8% !important;
+}
+
+.btn-blue {
+  background: #555 !important;
+  color: #FFF;
+}
+
+.btn-blue:hover {
+  background: #999 !important;
+  color: #FFF;
+}

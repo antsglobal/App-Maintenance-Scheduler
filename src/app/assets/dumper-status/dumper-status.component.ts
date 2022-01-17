@@ -44,7 +44,7 @@ export class DumperStatusComponent implements OnInit {
   constructor(private dumperService: DumperService) { }
 
   ngOnInit(): void {
-    this.getDumperIds()
+    this.getDeviceIds()
     // this.getDumperData();
   }
 
@@ -110,9 +110,11 @@ export class DumperStatusComponent implements OnInit {
     }
   }
 
-  getDumperIds(): void {
-    const newdumper: dumpermodel = {} as dumpermodel;
-    this.dumperService.getDumperIds(newdumper).subscribe({
+  getDeviceIds(): void {
+    const newdumper: dumpermodel = {
+      deviceCatagory: 'Dumper'
+    } as dumpermodel;
+    this.dumperService.getDeviceIds().subscribe({
       next: (dumperids) => {
         this.dumpers = dumperids['data'];
       },

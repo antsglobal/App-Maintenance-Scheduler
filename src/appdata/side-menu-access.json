@@ -1,0 +1,110 @@
+[
+  {
+    "icon": "local_shipping",
+    "text": "Dumper Tracking",
+    "url": "",
+    "children":[
+      {
+        "icon": "dashboard",
+        "text": "Dashboard",
+        "url": "/assets/dashboard",
+        "children":[],
+        "permission":["Admin"]
+      },
+      {
+        "icon": "data_usage",
+        "text": "Dumper",
+        "url": "/assets/dumperdetails",
+        "children":[],
+        "permission":["Admin"]
+      },
+      {
+        "icon": "access_time",
+        "text": "Duration of the trip",
+        "url": "/assets/tripduration",
+        "children":[],
+        "permission":["Admin"]
+      },
+      {
+        "icon": "rotate_left",
+        "text": "Dumper Status",
+        "url": "/assets/dumperstatus",
+        "children":[],
+        "permission":["Admin"]
+      }
+    ],
+    "permission":["Admin"]
+  },
+  {
+    "icon": "map",
+    "text": "Asset Management",
+    "url": "",
+    "children":[
+      {
+        "icon": "list",
+        "text": "Asset Summary",
+        "url": "/assets/assetsummary",
+        "children":[],
+        "permission":[]
+      },
+      {
+        "icon": "place",
+        "text": "Asset Tracking",
+        "url": "/assets/assettracking",
+        "children":[],
+        "permission":[]
+      },
+      {
+        "icon": "library_add",
+        "text": "Asset Code Registration",
+        "url": "/assets/assetregistration",
+        "children":[],
+        "permission":[]
+      },
+      {
+        "icon": "gps_fixed",
+        "text": "Location Mapping",
+        "url": "/assets/locationmapping",
+        "children":[],
+        "permission":[]
+      }
+    ],
+    "permission":[]
+  },
+  {
+    "icon": "schedule",
+    "text": "Maintenance Schedular",
+    "url": "",
+    "children":[
+      {
+        "icon": "event_note",
+        "text": "Device Runbook",
+        "url": "/assets/",
+        "children":[],
+        "permission":[]
+      },
+      {
+        "icon": "build",
+        "text": "Maintenance Schedule",
+        "url": "/assets/",
+        "children":[],
+        "permission":[]
+      },
+      {
+        "icon": "list",
+        "text": "Asset",
+        "url": "/assets/",
+        "children":[],
+        "permission":[]
+      },
+      {
+        "icon": "list",
+        "text": "Asset",
+        "url": "/assets/",
+        "children":[],
+        "permission":[]
+      }
+    ],
+    "permission":[]
+  }
+]

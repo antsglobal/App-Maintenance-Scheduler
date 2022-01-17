@@ -16,4 +16,10 @@ export class CommonService {
       return percentage.toFixed(decimals)
     }
   }
+
+  getDevices(dumper: dumpermodel): Observable<dumpermodel[]> {
+      return this.http.post<dumpermodel[]>(
+        this.apiBaseUrl + ServiceConstants.base + this.dumperIdsUrl, {}
+      );
+    }
 }

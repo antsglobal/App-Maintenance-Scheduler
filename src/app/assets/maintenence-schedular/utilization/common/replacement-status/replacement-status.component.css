@@ -1,0 +1,57 @@
+
+
+.oil_status{
+	width:100%;
+	padding:15px;
+	border-radius:4px;
+}
+
+.oil_value{
+	width: 100%;
+    margin-top: 11px;
+    padding: 12px;
+    border-radius: 4px;
+    border: 0px;
+}
+
+/* #f6c3c3 */
+.danger{
+	color: #a94442;
+    background-color: #f2dede;
+}
+
+.warning{
+	color: #8a6d3b;
+    background-color: #fcf8e3;
+}
+
+.success{
+	color: #468847;
+    background-color: #dff0d8;
+}
+
+.notif{
+	background:#FFF;
+	padding:14px 10px;
+	vertical-align:middle;
+	border-radius:5px;
+	margin: 10px 0;
+}
+
+.notif img{
+	width: 33px;
+    float: right;
+    margin-top: -27px;
+}
+
+.close-popup-btn {
+    cursor: pointer;
+  }
+
+.w100pc {
+    width: 100%;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    /* border-color: #00000036 !important; */
+}

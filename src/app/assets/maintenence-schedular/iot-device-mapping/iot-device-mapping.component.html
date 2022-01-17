@@ -1,0 +1,85 @@
+<mat-card class="mat-card-page">
+    <mat-card-header class="mat-card-header-page">
+        <mat-card-title class="mat-card-title-page">
+            <mat-icon>devices_other</mat-icon> {{ pageTitle }}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content-page p-2">
+        <div class="row m-0 p-0">
+            <div class="col-12">
+                    <mat-label class="mx-2 h-3 mat-header-cell">Status</mat-label>
+                    <mat-slide-toggle (change)="onStatusChange()" [(ngModel)]="status"> 
+                        {{ status ? '  Active' : '  Inactive' }}
+                    </mat-slide-toggle>
+                <button mat-raised-button class="col-4 btn-search float-right" (click)="pageState = 'Create'; iotDeviceMappingPopup()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <mat-table #table [dataSource]="deviceData" matSort>
+
+                        <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Id </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-1"> {{element.id}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="deviceSensorId">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Device Sensor ID
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-1"> {{element.deviceSensorId}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="deviceName">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Device Name
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-1">
+                                {{element.deviceName}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="modelName">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Model Name
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-1">
+                                {{element.modelName}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="deviceType">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Device Type
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-1">
+                                {{element.deviceType}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="status">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Status
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="px-1">
+                                {{element.status ? 'Active' : 'Inactive'}}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="actions">
+                            <mat-header-cell *matHeaderCellDef class="px-1 descriptive-info-second"> Actions
+                            </mat-header-cell>
+                            <mat-cell class="px-1 descriptive-info-second" *matCellDef="let element">
+                                <mat-icon matTooltip="edit" cursor="pointer"
+                                    (click)="pageState = 'Edit'; iotDeviceMappingPopup(element)">edit
+                                </mat-icon>
+                                <!-- <mat-icon matTooltip="delete" cursor="pointer"
+                                    (click)="pageState = 'Delete'; deleteEmp(element)">
+                                    delete
+                                </mat-icon> -->
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+                        [showFirstLastButtons]="true">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
