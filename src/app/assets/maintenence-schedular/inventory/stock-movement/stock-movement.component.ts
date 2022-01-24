@@ -7,6 +7,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DepartmentComponent } from '../department/department.component';
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
+import { InventoryServiceService } from 'src/app/services/inventory-service.service';
+import { Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
+import { IotDeviceMappingServiceService } from 'src/app/services/iot-device-mapping-service.service';
 
 export type StockMovementModel = {
   'id',
@@ -15,7 +19,7 @@ export type StockMovementModel = {
   // 'toDate',
   'partName'
   'quantity',
-  'ceratedBy'
+  'createdDate'
 }
 
 
@@ -41,17 +45,21 @@ export class StockMovementComponent implements OnInit {
     'deviceName',
     'partName',
     'quantity',
-    'ceratedBy'
+    'createdDate'
   ];
 
-  
+
   stockFilters: FormGroup;
   formPrepared: boolean = false
   isDep: boolean = true;
 
-  defaultValues: any = {} 
+  defaultValues: any = {}
   inputData
-  
+  partTypes: any[] = []
+  isSub: Subscription
+
+  todaysDate
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -59,18 +67,33 @@ export class StockMovementComponent implements OnInit {
     public dialogRef: MatDialogRef<DepartmentComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
     private fb: FormBuilder,
-  ) { 
+    private _is: InventoryServiceService, public datepipe: DatePipe,
+    private _idms: IotDeviceMappingServiceService
+  ) {
+
+    let today = new Date();
+    this.todaysDate = this.datepipe.transform(today, 'yyyy-MM-dd');
+
+    this.defaultValues.deviceName = 'All'
+    this.defaultValues.partType = 'All'
+    this.defaultValues.departmentName = 'All'
+    this.defaultValues.fromDate = this.todaysDate
+    this.defaultValues.toDate = this.todaysDate
+
     if (data) {
-    if (data.data) {
-      this.inputData = data.data
-      this.defaultValues.deviceName = this.inputData.deviceName
-      this.defaultValues.fromDate = this.inputData.fromDate
-      this.defaultValues.toDate = this.inputData.toDate
-      this.defaultValues.partType = this.inputData.partType
-      
-      // this.popupTitle = this.pageState + ` ${this.inputData.toDate}`
-    }
-    this.isDep = this.data.idDep;
+      // if (data.data) {
+      //   this.inputData = data.data
+      //   this.defaultValues.deviceName = this.inputData.deviceName
+      //   if (this.inputData.fromDate)
+      //     this.defaultValues.fromDate = this.inputData.fromDate
+      //   if (this.inputData.toDate)
+      //     this.defaultValues.toDate = this.inputData.toDate
+      //   this.defaultValues.partType = this.inputData.partType
+
+      //   // this.popupTitle = this.pageState + ` ${this.inputData.toDate}`
+      // }
+
+      this.isDep = this.data.isDep;
 
       if (!this.isDep) {
         this.displayedColumns = [
@@ -78,21 +101,46 @@ export class StockMovementComponent implements OnInit {
           'departmentName',
           'partName',
           'quantity',
-          'ceratedBy'
+          'createdDate'
         ];
         this.pageTitle = 'Warehouse Stock Movement'
       }
       console.log(this.isDep, this.displayedColumns, this.pageTitle)
-
     }
   }
 
+  dMinDate
+
+  setMinDate(setToDate = false) {
+    this.dMinDate = this.stockFilters.controls.fromDate.value;
+    if (setToDate)
+      this.stockFilters.controls.toDate.setValue(this.stockFilters.controls.fromDate.value);
+  }
+
   ngOnInit(): void {
+    this.getPartTypes()
     this.getData()
+    this.getDepartmentsLsit()
+    this.getDevicesList()
   }
 
   get assetMappingFormControl() {
     return this.stockFilters.controls;
+  }
+
+  getPartTypes() {
+    this.partTypes = [
+      {
+        'partName': 'All'
+      }
+    ]
+    this.isSub = this._is.getPartTypes().subscribe(
+      (data: any) => {
+        console.log(data);
+        if (data && data.status == 'true') {
+          this.partTypes = [...this.partTypes, ...data.data];
+        }
+      })
   }
 
   prepareForm() {
@@ -106,146 +154,31 @@ export class StockMovementComponent implements OnInit {
     this.formPrepared = true;
   }
 
-  getData() {
-    this.stocks = [
-      {
-        'id': 1,
-        'deviceName': 'A',
-        'partName': 'R1',
-        'quantity':'2890 Lts',
-        'ceratedBy': '21/12/2021 13:00'
-      },
-      {
-        'id': 2,
-        'deviceName': 'AAA2',
-        'partName': 'R2',
-        'quantity':'1231 Lts',
-        'ceratedBy': '21/12/2021 13:14'
-      },
-      {
-        'id': 3,
-        'deviceName': 'A3',
-        'partName': 'R3',
-        'quantity':'12312 ts',
-        'ceratedBy': '21/12/2021 13:15'
-      },
-      {
-        'id': 190,
-        'deviceName': 'Device 3',
-        'partName': 'Gear Oil',
-        'quantity':'125 Ltr',
-        'ceratedBy': '21/12/2021 13:20'
-      },
-      {
-        'id': 1092,
-        'deviceName': 'Device 14',
-        'partName': 'Grease',
-        'quantity':'320 Kg',
-        'ceratedBy': '21/12/2021 13:25'
-      },
-      
-      {
-        'id': 190,
-        'deviceName': 'Device 3',
-        'partName': 'Gear Oil',
-        'quantity':'125 Ltr',
-        'ceratedBy': '21/12/2021 13:20'
-      },
-      
-      {
-        'id': 192,
-        'deviceName': 'Device 3',
-        'partName': 'Gear Oil',
-        'quantity':'125 Ltr',
-        'ceratedBy': '21/12/2021 13:20'
-      },
-      
-      {
-        'id': 193,
-        'deviceName': 'Device 3',
-        'partName': 'Gear Oil',
-        'quantity':'125 Ltr',
-        'ceratedBy': '21/12/2021 13:20'
-      },
-      
-      {
-        'id': 194,
-        'deviceName': 'Device 3',
-        'partName': 'Gear Oil',
-        'quantity':'125 Ltr',
-        'ceratedBy': '21/12/2021 13:20'
-      },
-      
-      {
-        'id': 195,
-        'deviceName': 'Device 3',
-        'partName': 'Gear Oil',
-        'quantity':'125 Ltr',
-        'ceratedBy': '21/12/2021 13:20'
-      },
-      
-      {
-        'id': 196,
-        'deviceName': 'Device 3',
-        'partName': 'Gear Oil',
-        'quantity':'125 Ltr',
-        'ceratedBy': '21/12/2021 13:20'
-      },
-      
-      {
-        'id': 197,
-        'deviceName': 'Device 3',
-        'partName': 'Gear Oil',
-        'quantity':'125 Ltr',
-        'ceratedBy': '21/12/2021 13:20'
-      },
-    ]
+  getData(obj = {
+    fromDate: this.defaultValues.fromDate,
+    toDate: this.defaultValues.toDate
+  }) {
 
-
+    this._is.getDepartmentStockMovement(obj).subscribe(
+      (data: any) => {
+        console.log(data);
+        if (data && data.status == 'true') {
+          this.stocks = data.data;
+          this.stockData.data = this.stocks;
+          this.onStatusChange();
+        }
+      })
     if (!this.isDep) {
-      this.stocks = [
-        {
-          'id': 1,
-          'departmentName': 'Loader',
-          'partName': 'R1',
-          'quantity':'2890 Lts',
-          'ceratedBy': '21/12/2021 13:00'
-        },
-        {
-          'id': 2,
-          'departmentName': 'AAA2',
-          'partName': 'R2',
-          'quantity':'1231 Lts',
-          'ceratedBy': '21/12/2021 13:14'
-        },
-        {
-          'id': 3,
-          'departmentName': 'A3',
-          'partName': 'R3',
-          'quantity':'12312 ts',
-          'ceratedBy': '21/12/2021 13:15'
-        },
-        {
-          'id': 190,
-          'departmentName': 'Device 3',
-          'partName': 'Gear Oil',
-          'quantity':'125 Ltr',
-          'ceratedBy': '21/12/2021 13:20'
-        },
-        {
-          'id': 1092,
-          'departmentName': 'Device 14',
-          'partName': 'Grease',
-          'quantity':'320 Kg',
-          'ceratedBy': '21/12/2021 13:25'
-        },
-        
-      ]
-  
+      this._is.getWarehouseStockMovement(obj).subscribe(
+        (data: any) => {
+          console.log(data);
+          if (data && data.status == 'true') {
+            this.stocks = data.data;
+            this.stockData.data = this.stocks;
+            this.onStatusChange();
+          }
+        })
     }
-    this.stockData.data = this.stocks;
-
-    // this.onStatusChange()
     this.prepareForm();
   }
 
@@ -260,37 +193,95 @@ export class StockMovementComponent implements OnInit {
     this.stockData.filter = filterValue;
   }
 
-  // onStatusChange() {
-  //   this.filterAssetData(this.status);
-  // }
+  departments
+  getDepartmentsLsit() {
+    this.departments = [
+      {
+        'departmentName': 'All'
+      },
+      {
+        'departmentName': 'Loader',
+      },
+      {
+        'departmentName': 'Driller',
+      }
+    ]
+  }
 
-  // filterAssetData(recordFilter: any) {
-  //   if (recordFilter == null) {
-  //     this.stockData.data = this.stocks;
-  //   }
-  //   else {
-  //     let deviceFilterData: DepartmentModel[] = [];
-  //     this.stocks.forEach(assetItem => {
-  //       if (recordFilter == true) {
-  //         recordFilter = 1;
-  //       }
-  //       else {
-  //         recordFilter = 0;
-  //       }
-  //       if (recordFilter == assetItem.status) {
-  //         deviceFilterData.push(assetItem);
-  //       }
-  //     });
-  //     this.stockData.data = deviceFilterData;
-  //   }
-  // }
+  devices
+  getDevicesList() {
+    this.devices = [
+      {
+        'deviceMappingID': 'All'
+      }
+    ]
+    this._idms.getIotDeviceMappingList().subscribe((data: any) => {
+      if (data && data.status == 'true') {
+        this.devices = [...this.devices, ...data.data];
+      }
+      err => {
+        console.log(err);
+      }
+    })
+  }
 
+  onStatusChange() {
+    let filterInputs = [
+      {
+        value: this.stockFilters.controls.partType.value,
+        type: 'partName'
+      }
+    ]
+    if (!this.isDep) {
+      filterInputs.push(
+        {
+          value: this.stockFilters.controls.departmentName.value,
+          type: 'departmentName'
+        }
+      )
+    }
+    else {
+      filterInputs.push(
+        {
+          value: this.stockFilters.controls.deviceName.value,
+          type: 'deviceName'
+        }
+      )
+    }
+    this.filterData(filterInputs)
+  }
 
+  filterData(recordFilter) {
+    if (!recordFilter) {
+      this.stockData.data = this.stocks;
+    }
+    else {
+      let filterData: StockMovementModel[] = [];
+      console.log(recordFilter)
+      this.stocks.forEach(row => {
+        let filterRow = 0;
+        console.log(row);
+        for (let index = 0; index < recordFilter.length; index++) {
+          const filterObj = recordFilter[index];
+          if ((filterObj.value.toLowerCase() == 'all' || filterObj.value.toLowerCase() == row[filterObj.type].toLowerCase())) {
+            console.log(filterObj.value, filterObj.type, row[filterObj.type])
+            filterRow++;
+          }
+        }
+        if (filterRow == recordFilter.length) {
+          filterData.push(row);
+        }
+      });
+      this.stockData.data = filterData;
+    }
+  }
 
   onSubmit(value) {
-    console.log('va;ues', value)
+    this.defaultValues.fromDate = value.fromDate;
+    this.defaultValues.toDate = value.toDate;
+    this.getData();
   }
-  
+
   closePopup(msg = '', status = true) {
     this.dialogRef.close({
       status: status,
@@ -298,12 +289,13 @@ export class StockMovementComponent implements OnInit {
     });
   }
 
+  // To export data into PDF.
   exportPdf() {
     const doc = new jsPDF()
-    doc.text('Stockmovement Data', 20, 10);
+    doc.text(this.pageTitle, 20, 10);
     autoTable(doc,
       {
-        columns: this.displayedColumns.map(col => ({header:col,dataKey:col})),
+        columns: this.displayedColumns.map(col => ({ header: col, dataKey: col })),
         body: this.stockData.data
       })
     doc.save(`${this.pageTitle}.pdf`);

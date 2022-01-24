@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { IotDeviceMappingServiceService } from 'src/app/services/iot-device-mapping-service.service';
 import { IotDeviceComponent } from './iot-device/iot-device.component';
 
 @Component({
@@ -15,17 +16,17 @@ import { IotDeviceComponent } from './iot-device/iot-device.component';
 export class IotDeviceMappingComponent implements OnInit {
 
   pageTitle = 'IoT Device Mapping';
-  status = true;
+  deviceStatus = true;
   devices: IoTDevice[] = []
 
   deviceData = new MatTableDataSource<IoTDevice>(this.devices);
   displayedColumns = [
-    'id',
-    'deviceSensorId',
-    'deviceName',
+    // 'id',
+    'deviceId',
+    'deviceMappingID',
     'modelName',
-    'deviceType',
-    'status',
+    'deviceCategory',
+    'deviceStatus',
     'actions'
   ];
 
@@ -35,7 +36,8 @@ export class IotDeviceMappingComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _idms: IotDeviceMappingServiceService
   ) { }
 
   ngOnInit(): void {
@@ -43,43 +45,18 @@ export class IotDeviceMappingComponent implements OnInit {
   }
 
   getData() {
-    this.devices = [
-      {
-        'id': 1,
-        'deviceSensorId': '123sd123',
-        'deviceName': 'Device_1',
-        'modelName': 'PC200',
-        'deviceType': 'Loader',
-        'status': 1,
-      },
-      {
-        'id': 2,
-        'deviceSensorId': '123sd123',
-        'deviceName': 'Device_2',
-        'modelName': 'PC200',
-        'deviceType': 'Loader',
-        'status': 1,
-      },
-      {
-        'id': 3,
-        'deviceSensorId': '123sd123',
-        'deviceName': 'Device_3',
-        'modelName': 'PC300',
-        'deviceType': 'Driller',
-        'status': 0,
-      },
-      {
-        'id': 4,
-        'deviceSensorId': '123sd123',
-        'deviceName': 'Device_4',
-        'modelName': 'PC300',
-        'deviceType': 'Driller',
-        'status': 1,
+    this._idms.getIotDeviceMappingList().subscribe((data: any) => {
+      if (data && data.status == 'true') {
+        this.deviceData.data, this.devices = []
+        this.devices = data.data;
+        this.deviceData.data = this.devices;
+        this.onStatusChange()
       }
-    ]
-
-    this.deviceData.data = this.devices;
-    this.onStatusChange()
+      err => {
+        console.log(err);
+        this.statusMessage(err.message, 'X')
+      }
+    })
   }
 
   ngAfterViewInit() {
@@ -94,7 +71,7 @@ export class IotDeviceMappingComponent implements OnInit {
   }
 
   onStatusChange() {
-    this.filterAssetData(this.status);
+    this.filterAssetData(this.deviceStatus);
   }
 
   filterAssetData(recordFilter: any) {
@@ -102,15 +79,17 @@ export class IotDeviceMappingComponent implements OnInit {
       this.deviceData.data = this.devices;
     }
     else {
-      let deviceFilterData: IoTDevice[] = [];
+      let deviceFilterData: IoTDevice[] = [], statusCheck;
+      console.log(this.devices)
+      if (recordFilter == true) {
+        statusCheck = '0';
+      }
+      else {
+        statusCheck = '1';
+      }
       this.devices.forEach(assetItem => {
-        if (recordFilter == true) {
-          recordFilter = 1;
-        }
-        else {
-          recordFilter = 0;
-        }
-        if (recordFilter == assetItem.status) {
+        console.log(statusCheck, assetItem.deviceStatus)
+        if (statusCheck == assetItem.deviceStatus) {
           deviceFilterData.push(assetItem);
         }
       });
@@ -135,8 +114,8 @@ export class IotDeviceMappingComponent implements OnInit {
 
     this.prermissionDialogRef = this.prermissionDialogRef.afterClosed().subscribe(result => {
       if (result.status) {
+        this.getData();
         if (result.message) {
-          this.getData();
           this.statusMessage(result.message, 'X')
         }
         this.dialog.closeAll();
@@ -160,10 +139,10 @@ export class IotDeviceMappingComponent implements OnInit {
 }
 
 export type IoTDevice = {
-  id: number,
-  deviceSensorId: string,
-  deviceName: string,
+  // id: number,
+  deviceId: string,
+  deviceMappingID: string,
   modelName: string,
-  deviceType: string,
-  status: number,
+  deviceCategory: string,
+  deviceStatus: string,
 }

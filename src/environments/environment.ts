@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: '  http://192.168.10.56:7777/'
+  apiUrl: '  http://192.168.10.56:7777/sccl-dev'
 	// mqtt: {
 	// 	server: '48eb834e5bfc48fdb7a8c21995b506eb.s1.eu.hivemq.cloud',
   //   port: 8883,

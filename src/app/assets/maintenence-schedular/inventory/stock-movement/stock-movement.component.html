@@ -7,7 +7,7 @@
             <!-- <span class="float-right pt-2" (click)="closePopup()"><mat-icon>close</mat-icon></span> -->
             <div class="col-2 pt-2 mat-header-actions">
                 <span class="float-right mx-2" (click)="closePopup()"><mat-icon>close</mat-icon></span>
-                <span (click)="exporter.exportTable('xlsx', {fileName: pageTitle })" class="float-right">
+                <span (click)="exporter.exportTable('pdf', {fileName: pageTitle })" class="float-right">
                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                 </span>
                 <span (click)="exportPdf()" class="float-right">
@@ -36,7 +36,7 @@
                             <div class="row">
                                 <mat-form-field class="col-6" appearance="outline">
                                     <mat-label>From Date</mat-label>
-                                    <input matInput placeholder="Enter From Date" type="tel"
+                                    <input matInput (change)="setMinDate(true)" placeholder="Enter From Date" type="date"
                                         formControlName="fromDate" />
                                     <mat-error *ngIf="stockFilters.controls.fromDate.invalid">
                                         Please enter valid From Date.
@@ -44,7 +44,7 @@
                                 </mat-form-field>
                                 <mat-form-field class="col-6" appearance="outline">
                                     <mat-label>To Date</mat-label>
-                                    <input matInput placeholder="Enter To Date" type="tel" formControlName="toDate" />
+                                    <input matInput placeholder="Enter To Date" type="date" formControlName="toDate" [min]="dMinDate"/>
                                     <mat-error *ngIf="stockFilters.controls.toDate.invalid">
                                         Please enter valid To Date.
                                     </mat-error>
@@ -54,9 +54,9 @@
                             <div class="row">
                                 <mat-form-field *ngIf="isDep" appearance="outline" class="col-6">
                                     <mat-label>Device Name</mat-label>
-                                    <mat-select formControlName="deviceName" placeholder="Chosse Device Name">
-                                        <mat-option *ngFor="let v of departments" [value]="v.deviceName">
-                                            {{v.deviceName}}
+                                    <mat-select  (selectionChange)="onStatusChange()" formControlName="deviceName" placeholder="Chosse Device Name">
+                                        <mat-option *ngFor="let v of devices" [value]="v.deviceMappingID">
+                                            {{v.deviceMappingID}}
                                         </mat-option>
                                     </mat-select>
                                     <mat-error *ngIf="stockFilters.controls.deviceName.invalid">
@@ -66,7 +66,7 @@
 
                                 <mat-form-field *ngIf="!isDep" appearance="outline" class="col-6">
                                     <mat-label>Department Name</mat-label>
-                                    <mat-select formControlName="departmentName" placeholder="Chosse Device Name">
+                                    <mat-select  (selectionChange)="onStatusChange()"  formControlName="departmentName" placeholder="Chosse Device Name">
                                         <mat-option *ngFor="let v of departments" [value]="v.departmentName">
                                             {{v.departmentName}}
                                         </mat-option>
@@ -78,9 +78,9 @@
 
                                 <mat-form-field appearance="outline" class="col-6">
                                     <mat-label>Part Types</mat-label>
-                                    <mat-select formControlName="partType" placeholder="Chosse Part Types">
-                                        <mat-option *ngFor="let v of partTypes" [value]="v.name">
-                                            {{v.name}}
+                                    <mat-select  (selectionChange)="onStatusChange()"  formControlName="partType" placeholder="Chosse Part Types">
+                                        <mat-option *ngFor="let v of partTypes" [value]="v.partName">
+                                            {{v.partName}}
                                         </mat-option>
                                     </mat-select>
                                     <mat-error *ngIf="stockFilters.controls.partType.invalid">
@@ -149,11 +149,11 @@
                             </mat-cell>
                         </ng-container> -->
 
-                        <ng-container matColumnDef="ceratedBy">
+                        <ng-container matColumnDef="createdDate">
                             <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> Created Date
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element" class="px-2">
-                                {{ element.ceratedBy }}
+                                {{ element.createdDate | date:'dd-MM-YYYY hh:mm' }}
                             </mat-cell>
                         </ng-container>
 

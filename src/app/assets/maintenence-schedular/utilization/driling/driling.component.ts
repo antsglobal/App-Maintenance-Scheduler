@@ -78,7 +78,7 @@ export class DrilingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDevices();
-    this.GetData();
+    this.getData();
   }
 
   ngAfterViewInit() {
@@ -93,11 +93,12 @@ export class DrilingComponent implements OnInit {
   }
 
   getDataSub: Subscription
-  GetData(): void {
+  getData(): void {
     this.getDataSub = this._us.getUtilitiesList(this.pageTitle).subscribe((data: any) => {
       console.log('data=>', data);
       this.driller = data.data
       this.drillerData.data = this.driller;
+      this.onStatusChange();
     }, err => {
       console.log(err);
       this.statusMessage(err.message, 'X', 3000)
@@ -169,7 +170,7 @@ export class DrilingComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.status) {
         if (result.message) {
-          this.GetData();
+          this.getData();
           this.statusMessage(result.message, 'X')
         }
         this.dialog.closeAll();
@@ -204,6 +205,7 @@ export type DrillerModel = {
   maxHours: number,
   PId: number,
   quantityToBeReplaced: number,
+  replaceQuantity?,
   runHours: number,
   stockAvailable?: number,
   stockId?: string,

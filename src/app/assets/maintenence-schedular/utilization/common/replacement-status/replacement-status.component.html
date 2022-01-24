@@ -80,8 +80,8 @@
             </button> -->
             <!-- <span (click)="closePopup()" class="close-popup-btn float-right">X</span> -->
             <button type="submit" (click)="onSubmit()"
-                [disabled]="driller.hoursStatus != 'RED' || !driller.quantityToBeReplaced"
-                class="btn col-md-2 popup-footer-btn btn-{{getButtonAttributes()}}">Replace Now</button>
+                [disabled]="driller.hoursStatus != 'RED' || !driller.quantityToBeReplaced || driller.quantityToBeReplaced != replaceQuantity"
+                class="btn col-md-2 popup-footer-btn btn-{{getButtonAttributes()}}" >Replace Now</button>
             <button mat-button (click)="closePopup()" class="btn col-md-2 popup-footer-btn">Cancel</button>
         </div>
     </mat-card-footer>

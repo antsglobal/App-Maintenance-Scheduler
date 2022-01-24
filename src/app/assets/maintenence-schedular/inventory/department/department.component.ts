@@ -48,15 +48,15 @@ export class DepartmentComponent implements OnInit {
   displayedColumns = [
     'id',
     'departmentName',
-    'partName',
+    'part_name',
     'brand',
-    'stockAvailable',
+    'stock_available',
     'warehouseStock',
-    'lastRefilDate',
+    'lastRefillDate',
     'refill'
   ];
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
@@ -71,10 +71,10 @@ export class DepartmentComponent implements OnInit {
       this.pageTitle = this.whTitle;
       this.displayedColumns = [
         'id',
-        'partName',
+        'part_name',
         'brand',
-        'stockAvailable',
-        'uom'
+        'stock_available',
+        'units'
       ];
     }
   }
@@ -90,7 +90,7 @@ export class DepartmentComponent implements OnInit {
 
   getPaginationData(pagerEvent) {
     let pager = pagerEvent;
-    console.log('on-change', pager)
+    // console.log('on-change', pager)
     this.pageIndex = pager.pageIndex.toString();
     this.size = pager.pageSize.toString();
     this.getData()
@@ -99,7 +99,7 @@ export class DepartmentComponent implements OnInit {
   isSub: Subscription
 
   getData() {
-    console.log(this.isDep)
+    // console.log(this.isDep)
     if (this.isDep) {
 
       let paginationObj = {
@@ -107,7 +107,7 @@ export class DepartmentComponent implements OnInit {
         pageSize: this.size,
         query: 'All'
       } as PaginationModel;
-      console.log('before call', paginationObj)
+      // console.log('before call', paginationObj)
 
       this.isSub = this._is.getDepartmentStockList(paginationObj).subscribe(
         (data: any) => {
@@ -115,22 +115,11 @@ export class DepartmentComponent implements OnInit {
             this.departments = []
             this.departmentData.data = []
             let info = data.data;
-            console.log('before', this.pageIndex, this.size, this.totalLength)
-            console.log(info, this.departments.length);
-            this.departments = info.content //[...this.departments, ...info.content]
-            // this.departmentData.paginator.pageIndex = info.pageable.pageNumber;
-            // this.departmentData.paginator.pageSize = info.pageable.pageSize;
-            // this.departmentData.paginator.length = info.totalElements;
-            // if (info.pageable.pageNumber < info.totalPages) {
-            //   // this.departmentData.paginator.;
-            // }
+            // console.log('before', this.pageIndex, this.size, this.totalLength)
+            // console.log(info, this.departments.length);
+            this.departments = info.content;
             this.totalLength = info['totalElements']  ;
-            // this.pageIndex = info.pageable.pageNumber;
-            // this.pageSize = info.pageable.pageSize;
             this.departmentData.data = this.departments;
-
-            console.log('after', this.departmentData)
-
           }
         },
         err => {
@@ -141,37 +130,20 @@ export class DepartmentComponent implements OnInit {
     }
 
     else if (!this.isDep) {
-      console.log('is not dep')
-      this.departments = [
-        {
-          'id': 1,
-          brand: 'brand A',
-          partName: 'Gear Oil',
-          stockAvailable: '1820',
-          uom: 'Ltrs'
-        },
-        {
-          'id': 2,
-          brand: 'brand B',
-          partName: 'Engine Oil',
-          stockAvailable: '1820',
-          uom: 'Ltrs'
-        },
-        {
-          'id': 3,
-          brand: 'brand A',
-          partName: 'Grease',
-          stockAvailable: '1820',
-          uom: 'Kg'
-        },
-      ]
-      this.departmentData.data = this.departments;
+      // console.log('is not dep')
+      this.isSub = this._is.warehouseStockList().subscribe(
+        (data: any) => {
+          if (data && data.status == 'true') {
+            this.departments = data.data;
+            this.departmentData.data = this.departments;
+          }
+        })
     }
-    // this.onStatusChange()
   }
 
   ngAfterViewInit() {
-    // this.departmentData.paginator = this.paginator;
+    if (!this.isDep)
+      this.departmentData.paginator = this.paginator;
     this.departmentData.sort = this.sort;
   }
 
@@ -211,7 +183,7 @@ export class DepartmentComponent implements OnInit {
       data: {
         data: departmentData,
         pageState: this.pageState,
-        idDep: this.isDep
+        isDep: this.isDep
       },
       disableClose: true,
       panelClass: "custommodal",
@@ -253,10 +225,12 @@ export class DepartmentComponent implements OnInit {
 export type DepartmentModel = {
   id: number,
   departmentName?: string,
-  partName: string,
+  part_name: string,
+  partName?: string,
   brand: string,
-  stockAvailable: string,
+  stock_available: string,
+  stockAvailable?: string,
   warehouseStock?: string,
-  lastRefilDate?: string
-  uom?: string
+  lastRefillDate?: string
+  units?: string
 }

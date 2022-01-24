@@ -10,11 +10,13 @@
                 <div class="row">
                     <mat-form-field appearance="outline" class="col-6">
                         <mat-label>Department Name</mat-label>
-                        <mat-select formControlName="departmentName" required placeholder="Chosse Department Name">
+                        <!-- <mat-select formControlName="departmentName" required placeholder="Chosse Department Name">
                             <mat-option *ngFor="let v of departments" [value]="v.departmentName">
                                 {{v.departmentName}}
                             </mat-option>
-                        </mat-select>
+                        </mat-select> -->
+                        <input matInput  (change)="removeWhiteSpaces(stockRefillForm.controls.departmentName)"
+                            placeholder="Enter Refill Liters" required formControlName="departmentName" />
                         <mat-error *ngIf="stockRefillForm.controls.departmentName.invalid">
                             Please select a department.
                         </mat-error>
@@ -22,11 +24,13 @@
 
                     <mat-form-field appearance="outline" class="col-6">
                         <mat-label>Replacement Part</mat-label>
-                        <mat-select formControlName="partName" required placeholder="Chosse Replacement Part">
-                            <mat-option *ngFor="let v of partName" [value]="v.name">
-                                {{v.name}}
+                        <!-- <mat-select formControlName="partName" required placeholder="Chosse Replacement Part">
+                            <mat-option *ngFor="let v of partTypes" [value]="v.partName">
+                                {{v.partName}}
                             </mat-option>
-                        </mat-select>
+                        </mat-select> -->
+                        <input matInput (change)="removeWhiteSpaces(stockRefillForm.controls.partName)"
+                            placeholder="Enter Refill Liters" required formControlName="partName" />
                         <mat-error *ngIf="stockRefillForm.controls.partName.invalid">
                             Please select a replacement part.
                         </mat-error>
@@ -34,11 +38,11 @@
                 </div>
                 <div class="row">
                     <mat-form-field class="col-6" appearance="outline">
-                        <mat-label>Refill Liters</mat-label>
-                        <input matInput type="number" (change)="removeWhiteSpaces(stockRefillForm.controls.refillLiters)"
-                            placeholder="Enter Refill Liters" required formControlName="refillLiters" />
-                        <mat-error *ngIf="stockRefillForm.controls.refillLiters.invalid">
-                            Please enter valid refill liters.
+                        <mat-label>Refill Stock</mat-label>
+                        <input matInput type="number" (change)="removeWhiteSpaces(stockRefillForm.controls.refilQuantity)"
+                            placeholder="Enter Refill Stock" required formControlName="refilQuantity" />
+                        <mat-error *ngIf="stockRefillForm.controls.refilQuantity.invalid">
+                            Please enter valid refill stock.
                         </mat-error>
                     </mat-form-field>                    
                 </div>

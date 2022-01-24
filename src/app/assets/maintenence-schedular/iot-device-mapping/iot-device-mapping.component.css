@@ -1,0 +1,12 @@
+.descriptive-info-8pc {
+    min-width: 6% !important;
+    max-width: 8% !important;
+    padding-left: 4px;
+}
+
+
+.descriptive-info-15pc {
+    min-width: 15% !important;
+    max-width: 20% !important;
+    padding-left: 4px;
+}

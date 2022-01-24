@@ -39,11 +39,11 @@
                             <mat-cell *matCellDef="let element" class="px-2"> {{element.departmentName}} </mat-cell>
                         </ng-container>
 
-                        <ng-container matColumnDef="partName">
+                        <ng-container matColumnDef="part_name">
                             <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> Replacement Parts
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element" class="px-2">
-                                {{element.partName}} </mat-cell>
+                                {{ isDep ? element.partName : element.part_name}} </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="brand">
@@ -52,21 +52,22 @@
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element" class="px-2"
                                 [ngClass]="isDep ? 'descriptive-info-8pc' : ''">
-                                {{element.brand}} </mat-cell>
+                                {{element.brand | titlecase }} </mat-cell>
                         </ng-container>
 
-                        <ng-container matColumnDef="stockAvailable">
+                        <ng-container matColumnDef="stock_available">
                             <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> Stock Available
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element" class="px-2">
-                                {{element.stockAvailable}} </mat-cell>
+                                {{ isDep ? element.stockAvailable : element.stock_available}} </mat-cell>
+                            
                         </ng-container>
 
-                        <ng-container matColumnDef="uom">
+                        <ng-container matColumnDef="units">
                             <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> UOM
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element" class="px-2">
-                                {{element.uom}} </mat-cell>
+                                {{element.units}} </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="warehouseStock">
@@ -77,11 +78,11 @@
                             </mat-cell>
                         </ng-container>
 
-                        <ng-container matColumnDef="lastRefilDate">
+                        <ng-container matColumnDef="lastRefillDate">
                             <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> Last Refill Date
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element" class="px-2">
-                                {{ element.lastRefilDate }}
+                                {{ element.lastRefillDate  | date:'dd-MM-YYYY hh:mm' }}
                             </mat-cell>
                         </ng-container>
 

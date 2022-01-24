@@ -13,6 +13,7 @@ export class UtilityServiceService {
 
   apiBaseUrl
   utlityListApiUrl = '/replacement-view';
+  replaceDevicePartApiUrl = '/replacement'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,14 +24,21 @@ export class UtilityServiceService {
 
   constructor(private http: HttpClient,
     @Inject(ENV_CONFIG) private config: EnvironmentConfig) {
-      
+
     this.apiBaseUrl = `${config.environment.apiUrl}`;
   }
 
 
   public getUtilitiesList(category: string): Observable<dumpermodel[]> {
     return this.http.post<dumpermodel[]>(
-      this.apiBaseUrl + ServiceConstants.baseurlv2 + this.utlityListApiUrl + `?deviceCategory=${category}`,
+      this.apiBaseUrl + ServiceConstants.baseurlv2Dev + this.utlityListApiUrl + `?deviceCategory=${category}`,
+      this.httpOptions
+    );
+  }
+
+  public replaceDevicePart(input): Observable<dumpermodel[]> {
+    return this.http.post<dumpermodel[]>(
+      this.apiBaseUrl + ServiceConstants.baseurlv2Dev + this.replaceDevicePartApiUrl, input,
       this.httpOptions
     );
   }

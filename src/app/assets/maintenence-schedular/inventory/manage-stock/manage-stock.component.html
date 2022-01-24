@@ -7,25 +7,24 @@
     <mat-card-content class="mat-card-content-page p-1">
         <form [formGroup]="addStockForm" class="popupform" *ngIf="formPrepared">
             <div class="blockwrap">
-                <div class="row">                    
+                <div class="row">
                     <mat-form-field appearance="outline" class="col-6">
                         <mat-label>Replacement Part</mat-label>
                         <mat-select formControlName="partName" required placeholder="Replacement Part">
-                            <mat-option *ngFor="let v of parts" [value]="v.name">
-                                {{v.name}}
+                            <mat-option *ngFor="let v of partTypes" [value]="v.partName">
+                                {{v.partName}}
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="addStockForm.controls.partName.invalid">
-                            Please select New Stock.
+                            Please select Replacement Part.
                         </mat-error>
                     </mat-form-field>
 
-                    
                     <mat-form-field class="col-6" appearance="outline">
                         <mat-label>Add Stock</mat-label>
-                        <input matInput (change)="removeWhiteSpaces(addStockForm.controls.addNewStock)"
-                            placeholder="Replacement Part" formControlName="addNewStock" />
-                        <mat-error *ngIf="addStockForm.controls.addNewStock.invalid">
+                        <input matInput type="number" min="0" (change)="isPositive(addStockForm.controls.stockAvailable)" placeholder="Replacement Part"
+                            formControlName="stockAvailable" />
+                        <mat-error *ngIf="addStockForm.controls.stockAvailable.invalid">
                             Please enter valid New Stock.
                         </mat-error>
                     </mat-form-field>
@@ -34,25 +33,30 @@
                 <div class="row">
                     <mat-form-field appearance="outline" class="col-6">
                         <mat-label>UOM</mat-label>
-                        <mat-select formControlName="uom" required placeholder="Chosse Model Name">
+                        <mat-select formControlName="units" required placeholder="Chosse Model Name">
                             <mat-option *ngFor="let v of uoms" [value]="v.name">
                                 {{v.name}}
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="addStockForm.controls.uom.invalid">
+                        <mat-error *ngIf="addStockForm.controls.units.invalid">
                             Please select a UOM.
                         </mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="col-6">
-                        <mat-label>Select brand</mat-label>
-                        <mat-select formControlName="brand" required placeholder="Chosse Device Type">
+                        <mat-label>Enter Brand Name</mat-label>
+                        <!-- <mat-select formControlName="brand" required placeholder="Chosse Device Type">
                             <mat-option *ngFor="let v of brands" [value]="v.name">
                                 {{v.name}}
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="addStockForm.controls.brand.invalid">
                             Please select a brand.
+                        </mat-error> -->
+                        <input matInput (change)="removeWhiteSpaces(addStockForm.controls.brand)"
+                            placeholder="Replacement Part" required formControlName="brand" />
+                        <mat-error *ngIf="addStockForm.controls.brand.invalid">
+                            Please enter valid Brand Name.
                         </mat-error>
                     </mat-form-field>
                 </div>

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { IotDeviceMappingServiceService } from 'src/app/services/iot-device-mapping-service.service';
 import { IoTDevice, IotDeviceMappingComponent } from '../iot-device-mapping.component';
 
 @Component({
@@ -14,12 +15,12 @@ export class IotDeviceComponent implements OnInit {
   popupTitle: string
   pageState: string = 'Create';
   defaultValues: IoTDevice = {
-    id: null,
-    deviceName: '',
-    deviceSensorId: '',
-    deviceType: '',
+    // id: null,
+    deviceMappingID: '',
+    deviceId: '',
+    deviceCategory: '',
     modelName: '',
-    status: null
+    deviceStatus: null
   }
 
   deviceMappingForm: FormGroup;
@@ -29,15 +30,20 @@ export class IotDeviceComponent implements OnInit {
     public dialogRef: MatDialogRef<IotDeviceMappingComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
     private fb: FormBuilder,
+    private _idms: IotDeviceMappingServiceService
   ) {
+    console.log(data);
     if (data) {
-      if (data.data)
+      if (data.data) {
         this.defaultValues = data.data
+      }
+
       this.pageState = data.pageState
     }
   }
 
   ngOnInit(): void {
+    this.getDepartmentsLsit();
     this.prepareForm();
   }
 
@@ -52,34 +58,57 @@ export class IotDeviceComponent implements OnInit {
   }
 
   prepareForm() {
+    console.log(this.defaultValues);
     this.deviceMappingForm = this.fb.group({
-      deviceSensorId: [this.defaultValues.deviceSensorId, Validators.required],
-      deviceName: [this.defaultValues.deviceName, Validators.required],
-      id: [this.defaultValues.id, Validators.nullValidator],
-      deviceType: [this.defaultValues.deviceType, Validators.nullValidator],
+      deviceId: [{value: this.defaultValues.deviceId, disabled: this.pageState == 'Create'? false : true }, Validators.required],
+      deviceMappingID: [this.defaultValues.deviceMappingID, Validators.required],
+      // id: [this.defaultValues.id, Validators.nullValidator],
+      deviceCategory: [this.defaultValues.deviceCategory, Validators.nullValidator],
       modelName: [this.defaultValues.modelName, Validators.nullValidator],
-      status: [this.defaultValues.status, Validators.nullValidator]
+      deviceStatus: [this.defaultValues.deviceStatus == '1' ? false : true, Validators.nullValidator]
     })
     this.formPrepared = true;
   }
 
   onSubmit(assetData) {
+    if (assetData) {
+      if (assetData.deviceStatus) {
+        assetData.deviceStatus = '0'
+      }
+      else {
+        assetData.deviceStatus = '1'
+      }
+    console.log(assetData.deviceStatus);
+    }
     console.log(assetData);
-    // this.assetService.addAssets(assetData).subscribe(data => {
-    //   if (data.status) {
-    //     this.closePopup(data.message)
-    //   }
-    //   else {
-    //   }
-    // }, err => {
-    // })
+    assetData['deviceId'] = this.defaultValues.deviceId;
+    this._idms.manageIotDeviceMappingList(assetData).subscribe((data: any) => {
+      if (data.status) {
+        this.closePopup(data.message)
+      }
+      else {
+      }
+    }, err => {
+      console.log(err.message)
+    })
   }
 
-  closePopup(msg = '', status = true) {
+  closePopup(msg = '', deviceStatus = true) {
     this.dialogRef.close({
-      status: status,
+      status: deviceStatus,
       message: msg
     });
   }
 
+  departments
+  getDepartmentsLsit() {
+    this.departments = [
+      {
+        'departmentName': 'Loader',
+      },
+      {
+        'departmentName': 'Driller',
+      }
+    ]
+  }
 }
