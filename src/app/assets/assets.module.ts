@@ -8,7 +8,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { TopmenuComponent } from './topmenu/topmenu.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FormsModule } from '@angular/forms';
-import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -104,7 +104,7 @@ import { ManageStockComponent } from './maintenence-schedular/inventory/manage-s
     FormsModule,
     ReactiveFormsModule,
     NgApexchartsModule,
-    ChartsModule,
+    NgChartsModule,
     MatCardModule,
     MatExpansionModule,
     MatTreeModule,
