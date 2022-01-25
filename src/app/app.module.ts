@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { NgNgChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 import { DatePipe } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
