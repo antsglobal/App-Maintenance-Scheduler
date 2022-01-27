@@ -7,11 +7,12 @@
     <mat-card-content class="mat-card-content-page p-2">
         <div class="row m-0 p-0">
             <div class="col-12">
-                    <mat-label class="mx-2 h-3 mat-header-cell">Status</mat-label>
-                    <mat-slide-toggle (change)="onStatusChange()" [(ngModel)]="deviceStatus"> 
-                        {{ deviceStatus ? '  Active' : '  Inactive' }}
-                    </mat-slide-toggle>
-                <button mat-raised-button class="col-4 btn-search float-right" (click)="pageState = 'Create'; iotDeviceMappingPopup()">
+                <mat-label class="mx-2 h-3 mat-header-cell">Status</mat-label>
+                <mat-slide-toggle (change)="onStatusChange()" [(ngModel)]="deviceStatus">
+                    {{ deviceStatus ? ' Active' : ' Inactive' }}
+                </mat-slide-toggle>
+                <button mat-raised-button class="col-4 btn-search float-right"
+                    (click)="pageState = 'Create'; iotDeviceMappingPopup()">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
@@ -20,13 +21,16 @@
                     <mat-table #table [dataSource]="deviceData" matSort>
 
                         <ng-container matColumnDef="deviceId">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header class="descriptive-info-15pc"> Device Sensor ID
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="descriptive-info-15pc"> Device
+                                Sensor ID
                             </mat-header-cell>
-                            <mat-cell *matCellDef="let element" class="px-2 descriptive-info-15pc"> {{element.deviceId}} </mat-cell>
+                            <mat-cell *matCellDef="let element" class="px-2 descriptive-info-15pc"> {{element.deviceId}}
+                            </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="deviceMappingID">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header class="descriptive-info-15pc"> Device Name
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="descriptive-info-15pc"> Device
+                                Name
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element" class="px-2 descriptive-info-15pc">
                                 {{element.deviceMappingID}} </mat-cell>
@@ -70,6 +74,13 @@
                         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                     </mat-table>
+                    <table>
+                        <tr *ngIf="!deviceData.data.length">
+                            <td style="text-align: center;" class="px-2" [attr.colspan]="displayedColumns.length">
+                                No {{ pageTitle }} Data Found!
+                            </td>
+                        </tr>
+                    </table>
                     <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
                         [showFirstLastButtons]="true">
                     </mat-paginator>

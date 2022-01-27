@@ -42,26 +42,29 @@
                     <ng-container matColumnDef="PId">
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1 descriptive-info-second"> SL. No.
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let element;let i = index;" class="px-1 descriptive-info-second"> {{ i + 1 }}
+                        <mat-cell *matCellDef="let element;let i = index;" class="px-1 descriptive-info-second"> {{ i +
+                            1 }}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="deviceName">
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1 descriptive-info-150"> Machine
                             Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element"  class="px-1 descriptive-info-150"> {{element.deviceName}}
+                        <mat-cell *matCellDef="let element" class="px-1 descriptive-info-150"> {{element.deviceName}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="partName">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class='px-1'> Replacement Parts </mat-header-cell>
-                        <mat-cell *matCellDef="let element"  class='px-1'> {{element.partName}} </mat-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class='px-1'> Replacement Parts
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class='px-1'> {{element.partName}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="runHours">
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1 descriptive-info-150"> Run Time
                             (in hrs) </mat-header-cell>
-                        <mat-cell *matCellDef="let element"  class="px-1 descriptive-info-150 status-{{ element.hoursStatus }}">
+                        <mat-cell *matCellDef="let element"
+                            class="px-1 descriptive-info-150 status-{{ element.hoursStatus }}">
                             <i class="px-2 fa" [ngClass]="element.hoursStatus == 'RED' ? 'fa-times' : 
                                 (element.hoursStatus == 'ORANGE' ? 'fa-exclamation-triangle' : 'fa-check' )">
                             </i>
@@ -76,7 +79,8 @@
                     </ng-container>
 
                     <ng-container matColumnDef="lastReplacementDate">
-                        <mat-header-cell *matHeaderCellDef mat-sort-heade class='px-1'r> Last Replacement Date </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-heade class='px-1' r> Last Replacement Date
+                        </mat-header-cell>
                         <mat-cell *matCellDef="let element" class='px-1'> {{element.lastReplacementDate}} </mat-cell>
                     </ng-container>
 
@@ -84,6 +88,13 @@
                     <mat-row (click)="openDialog(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
                 </mat-table>
+                <table>
+                    <tr *ngIf="!drillerData.data.length">
+                        <td style="text-align: center;" class="px-2" [attr.colspan]="displayedColumns.length">
+                            No {{ pageTitle }} Data Found!
+                        </td>
+                    </tr>
+                </table>
                 <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
                 </mat-paginator>
             </div>

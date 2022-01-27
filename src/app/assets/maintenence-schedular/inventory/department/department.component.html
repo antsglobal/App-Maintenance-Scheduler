@@ -60,7 +60,7 @@
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element" class="px-2">
                                 {{ isDep ? element.stockAvailable : element.stock_available}} </mat-cell>
-                            
+
                         </ng-container>
 
                         <ng-container matColumnDef="units">
@@ -82,7 +82,7 @@
                             <mat-header-cell *matHeaderCellDef mat-sort-header class="px-1"> Last Refill Date
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element" class="px-2">
-                                {{ element.lastRefillDate  | date:'dd-MM-YYYY hh:mm' }}
+                                {{ element.lastRefillDate | date:'dd-MM-YYYY hh:mm' }}
                             </mat-cell>
                         </ng-container>
 
@@ -101,12 +101,19 @@
                         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                     </mat-table>
+                    <table>
+                        <tr *ngIf="!departmentData.data.length">
+                            <td style="text-align: center;" class="px-2" [attr.colspan]="displayedColumns.length">
+                                No {{ pageTitle }} Data Found!
+                            </td>
+                        </tr>
+                    </table>
                     <!-- <mat-paginator #paginator [pageSize]="pageSize" [length]="totalLength" [pageIndex]="pageIndex"
                         [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="false" (page)="getPaginationData($event)">
                     </mat-paginator> -->
 
-                    <mat-paginator #paginator [length]="totalLength" [pageSize]="size" [pageSizeOptions]="pageSizeOptions"
-                        (page)="getPaginationData($event)">
+                    <mat-paginator #paginator [length]="totalLength" [pageSize]="size"
+                        [pageSizeOptions]="pageSizeOptions" (page)="getPaginationData($event)">
                     </mat-paginator>
                 </div>
             </div>
